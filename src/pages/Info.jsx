@@ -25,18 +25,22 @@ const Info = () => {
                                 const type = info.media_type;
                                 var img_src = type === "person" ? info.profile_path : info.poster_path;
                                 var location = type === "person" ? `/people/${info.name}/${info.id}` : `/movies/movieinfo/${info.id}`;
-                                return (
-                                    <div
-                                        key={info.id}
-                                        className='container flex flex-col justify-center items-center text-center cursor-pointer'
-                                        onClick={() => {
-                                            navigate(location);
-                                        }}
-                                    >
-                                        <img src={"https://image.tmdb.org/t/p/w500/" + img_src} alt='img' className='h-full' />
-                                        <p>{info.name}</p>
-                                    </div>
-                                )
+                                if (img_src) {
+                                    return (
+                                        <div
+                                            key={info.id}
+                                            className='container flex flex-col justify-center items-center text-center cursor-pointer'
+                                            onClick={() => {
+                                                navigate(location);
+                                            }}
+                                        >
+                                            <img src={"https://image.tmdb.org/t/p/w500/" + img_src} alt='img' className='h-full' />
+                                            <p>{info.name}</p>
+                                        </div>
+                                    )
+                                } else {
+                                    return null;
+                                }
                             })
                         }
                     </div>
