@@ -2,11 +2,14 @@ import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import useFetch from '../components/useFetch'
 import Loading from '../components/Loading';
+import Pagination from '../components/Pagination';
 
 const Info = () => {
     const navigate = useNavigate();
     const { trendings } = useParams();
     const { data, error, loading } = useFetch(`https://api.themoviedb.org/3/trending/${trendings}/day?language=en-US`, "GET");
+    var title = document.querySelector("title");
+    title.innerText = trendings === "person" ? "People" : "Movies";
 
     return (
         <div
@@ -24,7 +27,7 @@ const Info = () => {
                             data.results.map(info => {
                                 const type = info.media_type;
                                 var img_src = type === "person" ? info.profile_path : info.poster_path;
-                                var location = type === "person" ? `/people/${info.name}/${info.id}` : `/movies/movieinfo/${info.id}`;
+                                var location = type === "person" ? `/people/${info.name}/${info.id}` : `/movies/movieinfo/${info.title}/${info.id}`;
                                 if (img_src) {
                                     return (
                                         <div
@@ -44,6 +47,7 @@ const Info = () => {
                             })
                         }
                     </div>
+                    <Pagination />
                 </>
             )}
         </div>

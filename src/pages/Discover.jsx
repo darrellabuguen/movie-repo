@@ -9,6 +9,8 @@ const Categories = () => {
     var separate = discover.split(" ");
     var combined = separate.length === 2 ? separate[0].toLowerCase() + "_" + separate[1].toLowerCase() : discover.toLowerCase();
     const { data, loading, error } = useFetch(`https://api.themoviedb.org/3/movie/${combined}?language=en-US&page=1`, "GET");
+    var title = document.querySelector("title");
+    title.innerText = `${discover} | Discover`;
 
     return (
         <div className='mx-auto max-w-7xl  p-6 lg:px-8'>
@@ -27,7 +29,7 @@ const Categories = () => {
                                         key={movie.id}
                                         className='container flex flex-col justify-center items-center text-center cursor-pointer'
                                         onClick={() => {
-                                            navigate(`/movies/movieinfo/${movie.id}`);
+                                            navigate(`/movies/movieinfo/${movie.title}/${movie.id}`);
                                         }}
                                     >
                                         <img src={"https://image.tmdb.org/t/p/w500/" + movie.poster_path} alt='img' className='h-full' />

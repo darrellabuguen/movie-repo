@@ -39,7 +39,7 @@ const Topweek = () => {
                                 <SplideSlide key={image.id}>
                                     <div className='container w-full cursor-pointer'
                                         onClick={() => {
-                                            navigate(`/movies/movieinfo/${image.id}`)
+                                            navigate(`/movies/movieinfo/${image.title}/${image.id}`)
                                         }}
                                     >
                                         <img src={"https://image.tmdb.org/t/p/w300/" + image.poster_path} alt='img' className='h-full max-md:w-64' />

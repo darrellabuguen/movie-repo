@@ -26,7 +26,7 @@ const Upcoming = () => {
                             <SplideSlide
                                 key={mv.id}
                                 onClick={() => {
-                                    navigate(`/movies/movieinfo/${mv.id}`)
+                                    navigate(`/movies/movieinfo/${mv.title}/${mv.id}`)
                                 }}
                                 className=" relative cursor-pointer"
                             >

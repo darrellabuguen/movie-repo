@@ -7,6 +7,8 @@ const Result = () => {
     const { mvname } = useParams();
     const navigate = useNavigate();
     const { data, error, loading } = useFetch(`https://api.themoviedb.org/3/search/multi?query=${mvname}&include_adult=false&language=en-US&page=1`, "GET");
+    var title = document.querySelector("title");
+    title.innerText = `${mvname} | Search Results`; //change the title
 
     return (
         <div className='mx-auto max-w-7xl  p-6 lg:px-8'>
@@ -24,7 +26,7 @@ const Result = () => {
                                 const type = movie.media_type;
                                 var img_src = type === "person" ? movie.profile_path : movie.poster_path;
                                 var img_title = type === "movie" ? movie.title : movie.name;
-                                var location = type === "person" ? `/people/${movie.name}/${movie.id}` : type === "tv" ? `/tv/tvinfo/${movie.id}` : `/movies/movieinfo/${movie.id}`;
+                                var location = type === "person" ? `/people/${movie.name}/${movie.id}` : type === "tv" ? `/tv/tvinfo/${movie.name}/${movie.id}` : `/movies/movieinfo/${movie.title}/${movie.id}`;
                                 if (img_src) {
                                     return (
                                         <div

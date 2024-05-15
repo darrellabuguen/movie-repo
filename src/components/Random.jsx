@@ -37,7 +37,7 @@ const Random = () => {
                         {data.results.map(movie => {
                             const type = movie.media_type;
                             var img_src = type === "person" ? movie.profile_path : movie.poster_path;
-                            var location = type === "person" ? `/people/${movie.name}/${movie.id}` : type === "tv" ? `/tv/tvinfo/${movie.id}` : `/movies/movieinfo/${movie.id}`;
+                            var location = type === "person" ? `/people/${movie.name}/${movie.id}` : type === "tv" ? `/tv/tvinfo/${movie.name}/${movie.id}` : `/movies/movieinfo/${movie.title}/${movie.id}`;
                             return (
                                 <SplideSlide key={movie.id}>
                                     <div className='container w-full cursor-pointer'

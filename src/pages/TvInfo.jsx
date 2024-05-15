@@ -3,8 +3,10 @@ import { useParams } from 'react-router-dom'
 import useFetch from '../components/useFetch';
 
 const TvInfo = () => {
-    const { tvid } = useParams();
+    const { tvname, tvid } = useParams();
     const { data, loading, error } = useFetch(`https://api.themoviedb.org/3/tv/${tvid}?language=en-US`, "GET");
+    var title = document.querySelector("title");
+    title.innerText = `${tvname} | TV Info`; //change the title
 
     return (
         <div className='mx-auto max-w-7xl  p-6 lg:px-8'>

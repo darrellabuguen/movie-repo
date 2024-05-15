@@ -34,11 +34,11 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route exact path="/trending/:trendings" element={<Info />} />
           <Route exact path='/result/:mvname' element={<Result />} />
-          <Route exact path='/movies/movieinfo/:movieid' element={<MovieInfo />} />
+          <Route exact path='/movies/movieinfo/:moviename/:movieid' element={<MovieInfo />} />
           <Route exact path='/discover/:discover?' element={<Discover />} />
           <Route exact path='/people/:celebname/:celebid' element={<CelebrityInfo />} />
           <Route exact path='/discover/tv/:tv' element={<Tv />} />
-          <Route exact path='/tv/tvinfo/:tvid' element={<TvInfo />} />
+          <Route exact path='/tv/tvinfo/:tvname/:tvid' element={<TvInfo />} />
         </Routes>
       </Router>
       {goToTop && (
