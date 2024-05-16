@@ -97,8 +97,15 @@ const Search = () => {
             <button
                 onClick={() => {
                     const srch_val = document.querySelector('#srch').value;
+                    const movie_option = document.getElementById("movie_check");
+                    const tv_option = document.getElementById("tv_check");
+                    const people_option = document.getElementById("people_check");
+                    var movie = movie_option.checked ? "movie=true" : "movie=false";
+                    var tv = tv_option.checked ? "tv=true" : "tv=false";
+                    var people = people_option.checked ? "people=true" : "people=false";
+
                     if (srch_val !== "") {
-                        navigate(`/result/${srch_val}`)
+                        navigate(`/result/${srch_val}/${movie}/${tv}/${people}`);
                     }
                 }}
                 className='h-8 bg-white rounded-r-md p-2 hover:bg-zinc-200 text-black flex items-center'

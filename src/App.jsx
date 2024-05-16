@@ -33,7 +33,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/trending/:trendings" element={<Info />} />
-          <Route exact path='/result/:mvname' element={<Result />} />
+          <Route exact path='/result/:mvname/:movieon/:tvon/:peopleon' element={<Result />} />
           <Route exact path='/movies/movieinfo/:moviename/:movieid' element={<MovieInfo />} />
           <Route exact path='/discover/:discover?' element={<Discover />} />
           <Route exact path='/people/:celebname/:celebid' element={<CelebrityInfo />} />

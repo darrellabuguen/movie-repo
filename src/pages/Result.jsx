@@ -4,9 +4,33 @@ import useFetch from '../components/useFetch';
 import Loading from '../components/Loading';
 
 const Result = () => {
-    const { mvname } = useParams();
+    const { mvname, movieon, tvon, peopleon } = useParams();
     const navigate = useNavigate();
-    const { data, error, loading } = useFetch(`https://api.themoviedb.org/3/search/multi?query=${mvname}&include_adult=false&language=en-US&page=1`, "GET");
+    var true_num = [
+        ["movie", movieon.split("=")[1]],
+        ["tv", tvon.split("=")[1]],
+        ["person", peopleon.split("=")[1]]
+    ];
+    var num = 0;
+    var checked = "";
+    var notChecked = "";
+
+    for (let i = 0; i < true_num.length; i++) {
+        var index = true_num[i];
+        for (let k = 0; k < index.length - 1; k++) {
+            var isChecked = true_num[i][k + 1];
+            if (isChecked == "true") {
+                num += 1;
+                checked = true_num[i][k];
+            } else {
+                notChecked = true_num[i][k];
+            }
+        }
+    }
+
+    var option = num > 1 || num === 0 ? "multi" : checked;
+
+    const { data, error, loading } = useFetch(`https://api.themoviedb.org/3/search/${option}?query=${mvname}&include_adult=false&language=en-US&page=1`, "GET");
     var title = document.querySelector("title");
     title.innerText = `${mvname} | Search Results`; //change the title
 
@@ -24,9 +48,10 @@ const Result = () => {
                         {
                             data.results.map(movie => {
                                 const type = movie.media_type;
-                                var img_src = type === "person" ? movie.profile_path : movie.poster_path;
+                                var img_src = type === "person" || checked === "person" ? movie.profile_path : movie.poster_path;
                                 var img_title = type === "movie" ? movie.title : movie.name;
-                                var location = type === "person" ? `/people/${movie.name}/${movie.id}` : type === "tv" ? `/tv/tvinfo/${movie.name}/${movie.id}` : `/movies/movieinfo/${movie.title}/${movie.id}`;
+                                var location = type === "person" || checked === "person" ? `/people/${movie.name}/${movie.id}` : type === "tv" || checked === "tv" ? `/tv/tvinfo/${movie.name}/${movie.id}` : `/movies/movieinfo/${movie.title}/${movie.id}`;
+
                                 if (img_src) {
                                     return (
                                         <div
