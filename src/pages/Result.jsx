@@ -28,6 +28,7 @@ const Result = () => {
         }
     }
 
+    num < 2 || num === 0 ? notChecked = "" : notChecked;
     var option = num > 1 || num === 0 ? "multi" : checked;
 
     const { data, error, loading } = useFetch(`https://api.themoviedb.org/3/search/${option}?query=${mvname}&include_adult=false&language=en-US&page=1`, "GET");
@@ -47,12 +48,12 @@ const Result = () => {
                     <div className='grid grid-cols-4 gap-4 max-md:grid-cols-3 max-sm:gap-2 max-sm:grid-cols-2'>
                         {
                             data.results.map(movie => {
-                                const type = movie.media_type;
-                                var img_src = type === "person" || checked === "person" ? movie.profile_path : movie.poster_path;
+                                const type = !movie.media_type ? `${checked}` : movie.media_type;
+                                var img_src = type === "person" ? movie.profile_path : movie.poster_path;
                                 var img_title = type === "movie" ? movie.title : movie.name;
-                                var location = type === "person" || checked === "person" ? `/people/${movie.name}/${movie.id}` : type === "tv" || checked === "tv" ? `/tv/tvinfo/${movie.name}/${movie.id}` : `/movies/movieinfo/${movie.title}/${movie.id}`;
+                                var location = type === "person" ? `/people/${movie.name}/${movie.id}` : type === "tv" ? `/tv/tvinfo/${movie.name}/${movie.id}` : `/movies/movieinfo/${movie.title}/${movie.id}`;
 
-                                if (img_src) {
+                                if (img_src && type !== notChecked) {
                                     return (
                                         <div
                                             key={movie.id}
