@@ -49,9 +49,28 @@ const Result = () => {
                         {
                             data.results.map(movie => {
                                 const type = !movie.media_type ? `${checked}` : movie.media_type;
-                                var img_src = type === "person" ? movie.profile_path : movie.poster_path;
-                                var img_title = type === "movie" ? movie.title : movie.name;
-                                var location = type === "person" ? `/people/${movie.name}/${movie.id}` : type === "tv" ? `/tv/tvinfo/${movie.name}/${movie.id}` : `/movies/movieinfo/${movie.title}/${movie.id}`;
+                                var img_src = "";
+                                var img_title = "";
+                                var location = "";
+
+                                //check type of collected data
+                                switch (type) {
+                                    case 'movie':
+                                        img_src = movie.poster_path;
+                                        img_title = movie.title;
+                                        location = `/movies/movieinfo/${movie.title}/${movie.id}`;
+                                        break;
+                                    case 'tv':
+                                        img_src = movie.poster_path;
+                                        img_title = movie.name;
+                                        location = `/tv/tvinfo/${movie.name}/${movie.id}`;
+                                        break;
+                                    case 'person':
+                                        img_src = movie.profile_path;
+                                        img_title = movie.name;
+                                        location = `/people/${movie.name}/${movie.id}`;
+                                        break;
+                                }
 
                                 if (img_src && type !== notChecked) {
                                     return (
