@@ -5,12 +5,13 @@ import { Splide, SplideSlide } from '@splidejs/react-splide';
 
 const MovieCredits = (props) => {
     const id = props.id;
+    const name = props.name;
     const { data, loading, error } = useFetch(`https://api.themoviedb.org/3/person/${id}/movie_credits?language=en-US`, "GET");
     const navigate = useNavigate();
 
     return (
         <>
-            <h1>Movies</h1>
+            <h1>Movies Featuring {name}</h1>
             {error && <div>Error fetching data</div>}
             {loading && <div></div>}
             {data && (

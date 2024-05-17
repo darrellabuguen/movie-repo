@@ -23,7 +23,7 @@ const CelebrityInfo = () => {
                             <p className=' text-gray-300'>{data.biography}</p>
                         </div>
                     </div>
-                    <MovieCredits id={celebid} />
+                    <MovieCredits id={celebid} name={celebname} />
                 </>
             )}
         </div>
