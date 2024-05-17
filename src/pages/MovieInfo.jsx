@@ -1,6 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import useFetch from '../components/useFetch';
+import Cast from '../components/Cast';
 
 const MovieInfo = () => {
     const { moviename, movieid } = useParams();
@@ -23,6 +24,7 @@ const MovieInfo = () => {
                                 <p className=' text-gray-300'>{data.overview}</p>
                             </div>
                         </div>
+                        <Cast id={movieid} type="movie" />
                     </>
                 )}
         </div>

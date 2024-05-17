@@ -1,6 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import useFetch from '../components/useFetch';
+import Cast from '../components/Cast';
 
 const TvInfo = () => {
     const { tvname, tvid } = useParams();
@@ -18,6 +19,7 @@ const TvInfo = () => {
                     <div>
                         <img src={"https://image.tmdb.org/t/p/original/" + data.backdrop_path} alt='img' className='h-full' />
                     </div>
+                    <Cast id={data.id} type="tv" />
                 </>
             )}
         </div>
