@@ -1,6 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import useFetch from '../components/useFetch';
+import MovieCredits from '../components/MovieCredits';
 
 const CelebrityInfo = () => {
     const { celebname, celebid } = useParams();
@@ -22,6 +23,7 @@ const CelebrityInfo = () => {
                             <p className=' text-gray-300'>{data.biography}</p>
                         </div>
                     </div>
+                    <MovieCredits id={celebid} />
                 </>
             )}
         </div>
