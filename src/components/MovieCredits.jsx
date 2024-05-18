@@ -6,7 +6,7 @@ import { Splide, SplideSlide } from '@splidejs/react-splide';
 const MovieCredits = (props) => {
     const id = props.id;
     const name = props.name;
-    const { data, loading, error } = useFetch(`https://api.themoviedb.org/3/person/${id}/movie_credits?language=en-US`, "GET");
+    const { data, loading, error } = useFetch(`https://api.themoviedb.org/3/person/${id}/combined_credits?language=en-US`, "GET");
     const navigate = useNavigate();
 
     return (
@@ -25,7 +25,10 @@ const MovieCredits = (props) => {
                     }}
                 >
                     {data.cast.map(movie => {
-                        var location = `/movies/movieinfo/${movie.title}/${movie.id}`;
+                        const type = movie.media_type;
+                        var location = type === "movie" ? `/movies/movieinfo/${movie.title}/${movie.id}` : `/tv/tvinfo/${movie.name}/${movie.id}`;
+                        var img_title = type === "movie" ? movie.title : movie.name;
+
                         return (
                             <SplideSlide
                                 key={movie.id}
@@ -35,7 +38,7 @@ const MovieCredits = (props) => {
                                 className='cursor-pointer w-40 text-center'
                             >
                                 <img src={"https://image.tmdb.org/t/p/original/" + movie.poster_path} alt="img" className='w-full' />
-                                <p>{movie.title}</p>
+                                <p>{img_title}</p>
                             </SplideSlide>
                         )
                     })}
