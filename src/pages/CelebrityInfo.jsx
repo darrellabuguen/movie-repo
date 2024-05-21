@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import useFetch from '../components/useFetch';
 import MovieCredits from '../components/MovieCredits';
+import profile from "../assets/profile1.jpg";
 
 const CelebrityInfo = () => {
     const { celebname, celebid } = useParams();
@@ -11,6 +12,8 @@ const CelebrityInfo = () => {
     const [con_height, setHeight] = useState("h-16");
     const [visible, setVisibility] = useState("block");
     const [more, setMore] = useState("See More");
+    const img_condition = "https://image.tmdb.org/t/p/original/null";
+
     const checkDescriptionHeight = () => {
         const description_con = document.querySelector(".desc_con");
         const description = document.querySelector(".desc");
@@ -22,6 +25,7 @@ const CelebrityInfo = () => {
             };
         }
     }
+
     useEffect(() => {
         checkDescriptionHeight();
         window.addEventListener("resize", checkDescriptionHeight);
@@ -35,7 +39,9 @@ const CelebrityInfo = () => {
                 <>
                     <h1 className=' text-2xl'>{celebname}</h1>
                     <div>
-                        <img src={"https://image.tmdb.org/t/p/w300/" + data.profile_path} alt='img' className='h-full' />
+                        <img src={
+                            img_condition === `https://image.tmdb.org/t/p/original/${data.profile_path}` ? profile : `https://image.tmdb.org/t/p/original/${data.profile_path}`
+                        } alt='img' className='w-72' />
                         <div>
                             <h1>Biography:</h1>
                             <div className={`desc_con overflow-hidden ${con_height}`}>
