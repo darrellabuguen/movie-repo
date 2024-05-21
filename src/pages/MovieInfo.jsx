@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import useFetch from '../components/useFetch';
 import Cast from '../components/Cast';
+import mvimage from "../assets/nopic-movie-banner.jpg";
 
 const MovieInfo = () => {
     const { moviename, movieid } = useParams();
@@ -11,6 +12,8 @@ const MovieInfo = () => {
     const [con_height, setHeight] = useState("h-16");
     const [visible, setVisibility] = useState("block");
     const [more, setMore] = useState("See More");
+    const img_condition = "https://image.tmdb.org/t/p/original/null";
+
     const checkDescriptionHeight = () => {
         const description_con = document.querySelector(".desc_con");
         const description = document.querySelector(".desc");
@@ -22,6 +25,7 @@ const MovieInfo = () => {
             };
         }
     }
+
     useEffect(() => {
         checkDescriptionHeight();
         window.addEventListener("resize", checkDescriptionHeight);
@@ -36,7 +40,12 @@ const MovieInfo = () => {
                     <>
                         <h1 className=' text-2xl'>{data.title}</h1>
                         <div>
-                            <img src={"https://image.tmdb.org/t/p/original/" + data.backdrop_path} alt='img' className='h-full' />
+                            <img src={
+                                img_condition === `https://image.tmdb.org/t/p/original/${data.backdrop_path}` ? mvimage : `https://image.tmdb.org/t/p/original/${data.backdrop_path}`
+                            }
+                                alt='img'
+                                className='h-full'
+                            />
                             <div>
                                 <h1>Description:</h1>
                                 <div className={`desc_con overflow-hidden ${con_height}`}>
