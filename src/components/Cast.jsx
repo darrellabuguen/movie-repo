@@ -35,7 +35,9 @@ const Cast = (props) => {
                                 className='cursor-pointer w-40 text-center'
                             >
                                 <img src={"https://image.tmdb.org/t/p/original/" + person.profile_path} alt="img" className='w-full' />
-                                <p>{person.name}</p>
+                                <p
+                                    className='line-clamp-1'
+                                >{person.name}</p>
                             </SplideSlide>
                         )
                     })}

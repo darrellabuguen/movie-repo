@@ -38,7 +38,9 @@ const MovieCredits = (props) => {
                                 className='cursor-pointer w-40 text-center'
                             >
                                 <img src={"https://image.tmdb.org/t/p/original/" + movie.poster_path} alt="img" className='w-full' />
-                                <p>{img_title}</p>
+                                <p
+                                    className=' line-clamp-1'
+                                >{img_title}</p>
                             </SplideSlide>
                         )
                     })}
