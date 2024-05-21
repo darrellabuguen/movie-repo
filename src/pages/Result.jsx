@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import useFetch from '../components/useFetch';
 import Loading from '../components/Loading';
+import mvimage from "../assets/nopic-movie.jpg";
 
 const Result = () => {
     const { mvname, movieon, tvon, peopleon } = useParams();
@@ -56,23 +57,26 @@ const Result = () => {
                                 //check type of collected data
                                 switch (type) {
                                     case 'movie':
-                                        img_src = movie.poster_path;
+                                        img_src = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
                                         img_title = movie.title;
                                         location = `/movies/movieinfo/${movie.title}/${movie.id}`;
                                         break;
                                     case 'tv':
-                                        img_src = movie.poster_path;
+                                        img_src = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
                                         img_title = movie.name;
                                         location = `/tv/tvinfo/${movie.name}/${movie.id}`;
                                         break;
                                     case 'person':
-                                        img_src = movie.profile_path;
+                                        img_src = "https://image.tmdb.org/t/p/w500" + movie.profile_path;
                                         img_title = movie.name;
                                         location = `/people/${movie.name}/${movie.id}`;
                                         break;
                                 }
 
-                                if (img_src && type !== notChecked) {
+                                //check if img_src is not null
+                                img_src !== "https://image.tmdb.org/t/p/w500null" ? img_src = img_src : img_src = mvimage;
+
+                                if (type !== notChecked) {
                                     return (
                                         <div
                                             key={movie.id}
@@ -81,8 +85,8 @@ const Result = () => {
                                                 navigate(location);
                                             }}
                                         >
-                                            <img src={"https://image.tmdb.org/t/p/w500/" + img_src} alt='img' className='h-full' />
-                                            <p>{img_title}</p>
+                                            <img src={img_src} alt='img' className='h-full' />
+                                            <p className=' line-clamp-1'>{img_title}</p>
                                             <p>{type}</p>
                                         </div>
                                     )
