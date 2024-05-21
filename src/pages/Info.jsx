@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import useFetch from '../components/useFetch'
 import Loading from '../components/Loading';
 import Pagination from '../components/Pagination';
+import mvimage from "../assets/nopic-movie.jpg";
 
 const Info = () => {
     const navigate = useNavigate();
@@ -26,24 +27,24 @@ const Info = () => {
                         {
                             data.results.map(info => {
                                 const type = info.media_type;
-                                var img_src = type === "person" ? info.profile_path : info.poster_path;
+                                var img_src = type === "person" ? `https://image.tmdb.org/t/p/w500${info.profile_path}` : `https://image.tmdb.org/t/p/w500${info.poster_path}`;
                                 var location = type === "person" ? `/people/${info.name}/${info.id}` : `/movies/movieinfo/${info.title}/${info.id}`;
-                                if (img_src) {
-                                    return (
-                                        <div
-                                            key={info.id}
-                                            className='container flex flex-col justify-center items-center text-center cursor-pointer'
-                                            onClick={() => {
-                                                navigate(location);
-                                            }}
-                                        >
-                                            <img src={"https://image.tmdb.org/t/p/w500/" + img_src} alt='img' className='h-full' />
-                                            <p>{info.name}</p>
-                                        </div>
-                                    )
-                                } else {
-                                    return null;
-                                }
+
+                                //check if img_src is not null
+                                img_src !== "https://image.tmdb.org/t/p/w500null" ? img_src = img_src : img_src = mvimage;
+
+                                return (
+                                    <div
+                                        key={info.id}
+                                        className='container flex flex-col justify-center items-center text-center cursor-pointer'
+                                        onClick={() => {
+                                            navigate(location);
+                                        }}
+                                    >
+                                        <img src={img_src} alt='img' className='h-full' />
+                                        <p className=' line-clamp-1'>{info.name}</p>
+                                    </div>
+                                )
                             })
                         }
                     </div>
