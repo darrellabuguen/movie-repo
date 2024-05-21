@@ -2,6 +2,7 @@ import React from 'react'
 import useFetch from './useFetch'
 import { useNavigate } from 'react-router-dom';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
+import profile from "../assets/profile1.jpg";
 
 const Cast = (props) => {
     const id = props.id;
@@ -26,6 +27,7 @@ const Cast = (props) => {
                 >
                     {data.cast.map(person => {
                         var location = `/people/${person.name}/${person.id}`;
+                        var image = person.profile_path !== null ? `https://image.tmdb.org/t/p/original/${person.profile_path}` : profile;
                         return (
                             <SplideSlide
                                 key={person.id}
@@ -34,7 +36,7 @@ const Cast = (props) => {
                                 }}
                                 className='cursor-pointer w-40 text-center'
                             >
-                                <img src={"https://image.tmdb.org/t/p/original/" + person.profile_path} alt="img" className='w-full' />
+                                <img src={image} alt="img" className='w-full' />
                                 <p
                                     className='line-clamp-1'
                                 >{person.name}</p>

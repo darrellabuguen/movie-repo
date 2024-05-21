@@ -2,6 +2,7 @@ import React from 'react'
 import useFetch from './useFetch'
 import { useNavigate } from 'react-router-dom';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
+import mvimage from "../assets/nopic-movie.jpg";
 
 const MovieCredits = (props) => {
     const id = props.id;
@@ -28,6 +29,7 @@ const MovieCredits = (props) => {
                         const type = movie.media_type;
                         var location = type === "movie" ? `/movies/movieinfo/${movie.title}/${movie.id}` : `/tv/tvinfo/${movie.name}/${movie.id}`;
                         var img_title = type === "movie" ? movie.title : movie.name;
+                        var image = movie.poster_path !== null ? `https://image.tmdb.org/t/p/original/${movie.poster_path}` : mvimage;
 
                         return (
                             <SplideSlide
@@ -37,7 +39,7 @@ const MovieCredits = (props) => {
                                 }}
                                 className='cursor-pointer w-40 text-center'
                             >
-                                <img src={"https://image.tmdb.org/t/p/original/" + movie.poster_path} alt="img" className='w-full' />
+                                <img src={image} alt="img" className='w-full' />
                                 <p
                                     className=' line-clamp-1'
                                 >{img_title}</p>
