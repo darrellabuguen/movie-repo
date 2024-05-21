@@ -3,12 +3,10 @@ import "@splidejs/splide/dist/css/splide.min.css";
 import useFetch from './useFetch';
 import { useNavigate } from 'react-router-dom';
 import Loading from './Loading';
-import useLayout from './useLayout';
 
 const Topweek = () => {
     const navigate = useNavigate();
     const { data, loading, error } = useFetch(`https://api.themoviedb.org/3/trending/movie/week?language=en-US`, "GET");
-    const { contPage } = useLayout();
 
     return (
         <div className='my-3'>
@@ -30,13 +28,15 @@ const Topweek = () => {
                             gap: "0.5rem",
                             drag: "free",
                             pagination: false,
-                            snap: true,
-                            perPage: contPage
+                            snap: true
                         }}
                     >
                         {data.results.map(image => {
                             return (
-                                <SplideSlide key={image.id}>
+                                <SplideSlide
+                                    key={image.id}
+                                    className='cursor-pointer w-40 text-center'
+                                >
                                     <div className='container w-full cursor-pointer'
                                         onClick={() => {
                                             navigate(`/movies/movieinfo/${image.title}/${image.id}`)

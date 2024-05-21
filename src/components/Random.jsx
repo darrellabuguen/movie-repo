@@ -3,12 +3,10 @@ import "@splidejs/splide/dist/css/splide.min.css";
 import useFetch from './useFetch';
 import { useNavigate } from 'react-router-dom';
 import Loading from './Loading';
-import useLayout from './useLayout';
 
 const Random = () => {
     const navigate = useNavigate();
     const { data, loading, error } = useFetch(`https://api.themoviedb.org/3/trending/all/week?language=en-US`, "GET");
-    const { contPage } = useLayout();
 
     return (
         <div className='my-3'>
@@ -30,8 +28,7 @@ const Random = () => {
                             gap: "0.5rem",
                             drag: "free",
                             pagination: false,
-                            snap: true,
-                            perPage: contPage
+                            snap: true
                         }}
                     >
                         {data.results.map(movie => {
@@ -39,7 +36,10 @@ const Random = () => {
                             var img_src = type === "person" ? movie.profile_path : movie.poster_path;
                             var location = type === "person" ? `/people/${movie.name}/${movie.id}` : type === "tv" ? `/tv/tvinfo/${movie.name}/${movie.id}` : `/movies/movieinfo/${movie.title}/${movie.id}`;
                             return (
-                                <SplideSlide key={movie.id}>
+                                <SplideSlide
+                                    key={movie.id}
+                                    className='cursor-pointer w-40 text-center'
+                                >
                                     <div className='container w-full cursor-pointer'
                                         onClick={() => {
                                             navigate(location);
