@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import useFetch from '../components/useFetch';
 import Cast from '../components/Cast';
 import mvimage from "../assets/nopic-movie-banner.jpg";
+import Recommendations from '../components/Recommendations';
 
 const TvInfo = () => {
     const { tvname, tvid } = useParams();
@@ -24,6 +25,7 @@ const TvInfo = () => {
                         } alt='img' className='h-full' />
                     </div>
                     <Cast id={data.id} type="tv" />
+                    <Recommendations id={data.id} type="tv" />
                 </>
             )}
         </div>

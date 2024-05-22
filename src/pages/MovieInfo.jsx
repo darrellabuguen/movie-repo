@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import useFetch from '../components/useFetch';
 import Cast from '../components/Cast';
 import mvimage from "../assets/nopic-movie-banner.jpg";
+import Recommendations from '../components/Recommendations';
 
 const MovieInfo = () => {
     const { moviename, movieid } = useParams();
@@ -68,6 +69,7 @@ const MovieInfo = () => {
                             </div>
                         </div>
                         <Cast id={movieid} type="movie" />
+                        <Recommendations id={movieid} type="movie" />
                     </>
                 )}
         </div>
