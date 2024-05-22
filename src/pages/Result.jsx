@@ -86,7 +86,12 @@ const Result = () => {
                                             }}
                                         >
                                             <img src={img_src} alt='img' className='h-full' />
-                                            <p className=' line-clamp-1'>{img_title}</p>
+                                            <p
+                                                className='line-clamp-1'
+                                                title={img_title}
+                                            >
+                                                {img_title}
+                                            </p>
                                             <p>{type}</p>
                                         </div>
                                     )

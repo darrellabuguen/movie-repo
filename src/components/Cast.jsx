@@ -39,6 +39,7 @@ const Cast = (props) => {
                                 <img src={image} alt="img" className='w-full' />
                                 <p
                                     className='line-clamp-1'
+                                    title={person.name}
                                 >{person.name}</p>
                             </SplideSlide>
                         )

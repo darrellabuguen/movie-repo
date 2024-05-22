@@ -42,6 +42,7 @@ const MovieCredits = (props) => {
                                 <img src={image} alt="img" className='w-full' />
                                 <p
                                     className=' line-clamp-1'
+                                    title={img_title}
                                 >{img_title}</p>
                             </SplideSlide>
                         )
