@@ -1,4 +1,3 @@
-import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import useFetch from '../components/useFetch'
 import Loading from '../components/Loading';
@@ -7,10 +6,14 @@ import mvimage from "../assets/nopic-movie.jpg";
 
 const Info = () => {
     const navigate = useNavigate();
-    const { trendings } = useParams();
-    const { data, error, loading } = useFetch(`https://api.themoviedb.org/3/trending/${trendings}/day?language=en-US`, "GET");
+    var { trendings, pagenum } = useParams();
+    const { data, error, loading } = useFetch(`https://api.themoviedb.org/3/trending/${trendings}/day?language=en-US&page=${pagenum}`, "GET");
     var title = document.querySelector("title");
     title.innerText = trendings === "person" ? "People" : "Movies";
+
+    const setPageNumber = (number) => {
+        navigate(`/trending/movie/${number}`);
+    }
 
     return (
         <div
@@ -48,7 +51,7 @@ const Info = () => {
                             })
                         }
                     </div>
-                    <Pagination page={data.page} total={data.total_pages} />
+                    <Pagination page={pagenum} total={data.total_pages} set={setPageNumber} />
                 </>
             )}
         </div>

@@ -32,7 +32,7 @@ function App() {
         <Navigation />
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route exact path="/trending/:trendings" element={<Info />} />
+          <Route exact path="/trending/:trendings/:pagenum" element={<Info />} />
           <Route exact path='/result/:mvname/:movieon/:tvon/:peopleon' element={<Result />} />
           <Route exact path='/movies/movieinfo/:moviename/:movieid' element={<MovieInfo />} />
           <Route exact path='/discover/:discover?' element={<Discover />} />

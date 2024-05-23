@@ -108,10 +108,10 @@ function Navigation() {
                     <Link to="/" className="text-sm font-semibold leading-6">
                         Home
                     </Link>
-                    <Link to={`/trending/movie`} className="text-sm font-semibold leading-6">
+                    <Link to={`/trending/movie/1`} className="text-sm font-semibold leading-6">
                         Movies
                     </Link>
-                    <Link to={`/trending/person`} className="text-sm font-semibold leading-6">
+                    <Link to={`/trending/person/1`} className="text-sm font-semibold leading-6">
                         People
                     </Link>
                 </Popover.Group>
