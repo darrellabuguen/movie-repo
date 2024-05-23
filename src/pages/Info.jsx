@@ -12,7 +12,7 @@ const Info = () => {
     title.innerText = trendings === "person" ? "People" : "Movies";
 
     const setPageNumber = (number) => {
-        navigate(`/trending/movie/${number}`);
+        navigate(`/trending/${trendings}/${number}`);
     }
 
     return (
