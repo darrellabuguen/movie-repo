@@ -48,7 +48,7 @@ const Info = () => {
                             })
                         }
                     </div>
-                    <Pagination />
+                    <Pagination page={data.page} total={data.total_pages} />
                 </>
             )}
         </div>
