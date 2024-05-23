@@ -47,26 +47,24 @@ const MovieInfo = () => {
                                 alt='img'
                                 className='h-full'
                             />
-                            <div>
-                                <h1>Description:</h1>
-                                <div className={`desc_con overflow-hidden ${con_height}`}>
-                                    <p
-                                        className={`text-gray-300 desc`}
-                                    >{data.overview}</p>
-                                </div>
-                                <div
-                                    className={`text-blue-500 cursor-pointer ${visible}`}
-                                    onClick={() => {
-                                        if (con_height === "h-16") {
-                                            setHeight("max-h-full");
-                                            setMore("See Less");
-                                        } else {
-                                            setHeight("h-16");
-                                            setMore("See More");
-                                        }
-                                    }}
-                                >{more}</div>
+                            <h1>Description:</h1>
+                            <div className={`desc_con overflow-hidden ${con_height}`}>
+                                <p
+                                    className={`text-gray-300 desc`}
+                                >{data.overview}</p>
                             </div>
+                            <div
+                                className={`text-blue-500 cursor-pointer ${visible}`}
+                                onClick={() => {
+                                    if (con_height === "h-16") {
+                                        setHeight("max-h-full");
+                                        setMore("See Less");
+                                    } else {
+                                        setHeight("h-16");
+                                        setMore("See More");
+                                    }
+                                }}
+                            >{more}</div>
                         </div>
                         <Cast id={movieid} type="movie" />
                         <Recommendations id={movieid} type="movie" />
