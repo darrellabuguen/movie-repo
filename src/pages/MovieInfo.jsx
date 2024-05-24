@@ -47,24 +47,53 @@ const MovieInfo = () => {
                                 alt='img'
                                 className='h-full'
                             />
-                            <h1>Description:</h1>
-                            <div className={`desc_con overflow-hidden ${con_height}`}>
-                                <p
-                                    className={`text-gray-300 desc`}
-                                >{data.overview}</p>
+                            <br />
+                            <div className='flex gap-4 max-sm:flex-col'>
+                                <div className=' w-40 flex-shrink-0'>
+                                    <img
+                                        src={`https://image.tmdb.org/t/p/original${data.poster_path}`}
+                                        alt="img"
+                                    />
+                                </div>
+                                <div>
+                                    <div className={`desc_con overflow-hidden ${con_height}`}>
+                                        <p
+                                            className={`text-gray-300 desc`}
+                                        >{data.overview}</p>
+                                    </div>
+                                    <div
+                                        className={`text-blue-500 cursor-pointer ${visible}`}
+                                        onClick={() => {
+                                            if (con_height === "h-16") {
+                                                setHeight("max-h-full");
+                                                setMore("See Less");
+                                            } else {
+                                                setHeight("h-16");
+                                                setMore("See More");
+                                            }
+                                        }}
+                                    >{more}</div>
+                                    <table className='w-96'>
+                                        <tbody>
+                                            <tr>
+                                                <td>Release Date: {data.release_date}</td>
+                                                <td>Rating: {data.vote_average}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Runtime: {data.runtime} min</td>
+                                                <td>Budget: {data.budget}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Revenue: {data.revenue}</td>
+                                                <td>Status: {data.status}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Language: {data.original_language}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                            <div
-                                className={`text-blue-500 cursor-pointer ${visible}`}
-                                onClick={() => {
-                                    if (con_height === "h-16") {
-                                        setHeight("max-h-full");
-                                        setMore("See Less");
-                                    } else {
-                                        setHeight("h-16");
-                                        setMore("See More");
-                                    }
-                                }}
-                            >{more}</div>
                         </div>
                         <Cast id={movieid} type="movie" />
                         <Recommendations id={movieid} type="movie" />

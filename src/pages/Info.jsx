@@ -7,7 +7,7 @@ import mvimage from "../assets/nopic-movie.jpg";
 const Info = () => {
     const navigate = useNavigate();
     var { trendings, pagenum } = useParams();
-    const { data, error, loading } = useFetch(`https://api.themoviedb.org/3/trending/${trendings}/day?language=en-US&page=${pagenum}`, "GET");
+    const { data, error, loading } = useFetch(`https://api.themoviedb.org/3/trending/${trendings}/day?language=en-US&page=${pagenum}`, "GET", `${pagenum}`);
     var title = document.querySelector("title");
     title.innerText = trendings === "person" ? "People" : "Movies";
 
@@ -15,14 +15,13 @@ const Info = () => {
         navigate(`/trending/${trendings}/${number}`);
     }
 
+    if (loading) return <div className='mx-auto max-w-7xl p-6 lg:px-8 max-sm:px-2'><Loading /></div>;
+    if (error) return <div>Error: {error}</div>;
+
     return (
         <div
             className='mx-auto max-w-7xl p-6 lg:px-8 max-sm:px-2'
         >
-            {loading &&
-                <Loading />
-            }
-            {error && <div>{error}</div>}
             {data && (
                 <>
                     <h1>{trendings === "person" ? "People" : "Movies"}</h1>
