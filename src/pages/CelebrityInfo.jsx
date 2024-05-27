@@ -6,7 +6,7 @@ import profile from "../assets/profile1.jpg";
 
 const CelebrityInfo = () => {
     const { celebname, celebid } = useParams();
-    const { data, loading, error } = useFetch(`https://api.themoviedb.org/3/person/${celebid}?language=en-US`, "GET");
+    const { data, loading, error } = useFetch(`https://api.themoviedb.org/3/person/${celebid}?language=en-US`, "GET", `${celebid}`);
     var title = document.querySelector("title");
     title.innerText = `${celebname} | Celebrity Info`;
     const [con_height, setHeight] = useState("h-16");
@@ -31,10 +31,11 @@ const CelebrityInfo = () => {
         window.addEventListener("resize", checkDescriptionHeight);
     });
 
+    if (loading) return <div className='mx-auto max-w-7xl p-6 lg:px-8 max-sm:px-2'>Getting celeb info...</div>;
+    if (error) return <div>Error: {error}</div>;
+
     return (
         <div className='mx-auto max-w-7xl  p-6 lg:px-8'>
-            {error && <div>{error}</div>}
-            {loading && <div>Getting celeb info...</div>}
             {data && (
                 <>
                     <h1 className=' text-2xl'>{celebname}</h1>

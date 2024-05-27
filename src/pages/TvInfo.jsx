@@ -7,7 +7,7 @@ import Recommendations from '../components/Recommendations';
 
 const TvInfo = () => {
     const { tvname, tvid } = useParams();
-    const { data, loading, error } = useFetch(`https://api.themoviedb.org/3/tv/${tvid}?language=en-US`, "GET");
+    const { data, loading, error } = useFetch(`https://api.themoviedb.org/3/tv/${tvid}?language=en-US`, "GET", `${tvid}`);
     var title = document.querySelector("title");
     title.innerText = `${tvname} | TV Info`; //change the title
     const img_condition = "https://image.tmdb.org/t/p/original/null";
@@ -33,10 +33,11 @@ const TvInfo = () => {
         window.addEventListener("resize", checkDescriptionHeight);
     });
 
+    if (loading) return <div className='mx-auto max-w-7xl p-6 lg:px-8 max-sm:px-2'>Getting tv info...</div>;
+    if (error) return <div>Error: {error}</div>;
+
     return (
         <div className='mx-auto max-w-7xl  p-6 lg:px-8'>
-            {error && <div>{error}</div>}
-            {loading && <div>Getting info...</div>}
             {data && (
                 <>
                     <h1 className=' text-2xl'>{data.name}</h1>

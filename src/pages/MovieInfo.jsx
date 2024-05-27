@@ -7,7 +7,7 @@ import Recommendations from '../components/Recommendations';
 
 const MovieInfo = () => {
     const { moviename, movieid } = useParams();
-    const { data, loading, error } = useFetch(`https://api.themoviedb.org/3/movie/${movieid}?language=en-US`, "GET");
+    const { data, loading, error } = useFetch(`https://api.themoviedb.org/3/movie/${movieid}?language=en-US`, "GET", `${movieid}`);
     var title_tag = document.querySelector("title");
     title_tag.innerText = `${moviename} | Movie Info`; //change the title
     const [con_height, setHeight] = useState("h-16");
@@ -32,10 +32,11 @@ const MovieInfo = () => {
         window.addEventListener("resize", checkDescriptionHeight);
     });
 
+    if (loading) return <div className='mx-auto max-w-7xl p-6 lg:px-8 max-sm:px-2'>Getting movie info...</div>;
+    if (error) return <div>Error: {error}</div>;
+
     return (
         <div className='mx-auto max-w-7xl  p-6 lg:px-8'>
-            {error && <div>{error}</div>}
-            {loading && <div>Getting movie info...</div>}
             {data &&
                 (
                     <>
