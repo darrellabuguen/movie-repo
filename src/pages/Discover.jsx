@@ -2,22 +2,26 @@ import { useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import useFetch from '../components/useFetch';
 import Loading from '../components/Loading';
+import Pagination from '../components/Pagination';
 
 const Categories = () => {
     const navigate = useNavigate();
-    const { discover } = useParams();
+    var { discover, pagenum } = useParams();
     var separate = discover.split(" ");
     var combined = separate.length === 2 ? separate[0].toLowerCase() + "_" + separate[1].toLowerCase() : discover.toLowerCase();
-    const { data, loading, error } = useFetch(`https://api.themoviedb.org/3/movie/${combined}?language=en-US&page=1`, "GET");
+    const { data, loading, error } = useFetch(`https://api.themoviedb.org/3/movie/${combined}?language=en-US&page=${pagenum}`, "GET", `${pagenum}`);
     var title = document.querySelector("title");
     title.innerText = `${discover} | Discover`;
 
+    const setPageNumber = (number) => {
+        navigate(`/discover/${discover}/${number}`);
+    }
+
+    if (loading) return <div className='mx-auto max-w-7xl p-6 lg:px-8 max-sm:px-2'><Loading /></div>;
+    if (error) return <div>Error: {error}</div>;
+
     return (
         <div className='mx-auto max-w-7xl  p-6 lg:px-8'>
-            {loading &&
-                <Loading />
-            }
-            {error && <div>{error}</div>}
             {data && (
                 <>
                     <h1>{discover}</h1>
@@ -38,6 +42,7 @@ const Categories = () => {
                             })
                         }
                     </div>
+                    <Pagination page={pagenum} total={data.total_pages} set={setPageNumber} />
                 </>
             )}
         </div>
