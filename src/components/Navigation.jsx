@@ -77,7 +77,7 @@ function Navigation() {
                                             </div>
                                             <div className="flex-auto">
                                                 <Link to={
-                                                    item.name === "TV" ? `discover/tv/${item.name}` : `/discover/${item.name}`
+                                                    item.name === "TV" ? `discover/tv/1` : `/discover/${item.name}/1`
                                                 } className="block font-semibold text-gray-900">
                                                     {item.name}
                                                     <span className="absolute inset-0" />
@@ -92,7 +92,7 @@ function Navigation() {
                                         <Link
                                             key={item.name}
                                             to={
-                                                item.name === "TV" ? `discover/tv/${item.name}` : `/discover/${item.name}`
+                                                item.name === "TV" ? `discover/tv/1` : `/discover/${item.name}/1`
                                             }
                                             className="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"
                                         >
@@ -157,7 +157,7 @@ function Navigation() {
                                                         key={item.name}
                                                         as="a"
                                                         to={
-                                                            item.name === "TV" ? `discover/tv/${item.name}` : `/discover/${item.name}`
+                                                            item.name === "TV" ? `discover/tv/1` : `/discover/${item.name}/1`
                                                         }
                                                         className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                                                         onClick={() => setMobileMenuOpen(false)}

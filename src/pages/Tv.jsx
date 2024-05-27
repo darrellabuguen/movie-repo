@@ -1,20 +1,25 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import useFetch from '../components/useFetch'
 import Loading from '../components/Loading';
+import Pagination from '../components/Pagination';
 
 const Tv = () => {
     const navigate = useNavigate();
-    const { data, loading, error } = useFetch('https://api.themoviedb.org/3/trending/tv/day?language=en-US', "GET");
+    var { pagenum } = useParams();
+    const { data, loading, error } = useFetch(`https://api.themoviedb.org/3/trending/tv/day?language=en-US&page=${pagenum}`, "GET", `${pagenum}`);
     var title = document.querySelector("title");
     title.innerText = `TV | Discover`; //change the title
 
+    const setPageNumber = (number) => {
+        navigate(`/discover/tv/${number}`);
+    }
+
+    if (loading) return <div className='mx-auto max-w-7xl p-6 lg:px-8 max-sm:px-2'><Loading /></div>;
+    if (error) return <div>Error: {error}</div>;
+
     return (
         <div className='mx-auto max-w-7xl  p-6 lg:px-8'>
-            {loading &&
-                <Loading />
-            }
-            {error && <div>{error}</div>}
             {data && (
                 <>
                     <h1>TV</h1>
@@ -35,6 +40,7 @@ const Tv = () => {
                             })
                         }
                     </div>
+                    <Pagination page={pagenum} total={data.total_pages} set={setPageNumber} />
                 </>
             )}
         </div>

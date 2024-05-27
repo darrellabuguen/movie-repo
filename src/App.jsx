@@ -35,9 +35,9 @@ function App() {
           <Route exact path="/trending/:trendings/:pagenum" element={<Info />} />
           <Route exact path='/result/:mvname/:movieon/:tvon/:peopleon' element={<Result />} />
           <Route exact path='/movies/movieinfo/:moviename/:movieid' element={<MovieInfo />} />
-          <Route exact path='/discover/:discover?' element={<Discover />} />
+          <Route exact path='/discover/:discover/:pagenum' element={<Discover />} />
           <Route exact path='/people/:celebname/:celebid' element={<CelebrityInfo />} />
-          <Route exact path='/discover/tv/:tv' element={<Tv />} />
+          <Route exact path='/discover/tv/:pagenum' element={<Tv />} />
           <Route exact path='/tv/tvinfo/:tvname/:tvid' element={<TvInfo />} />
         </Routes>
       </Router>
