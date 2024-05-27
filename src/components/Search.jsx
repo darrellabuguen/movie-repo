@@ -105,7 +105,7 @@ const Search = () => {
                     var people = people_option.checked ? "people=true" : "people=false";
 
                     if (srch_val !== "") {
-                        navigate(`/result/${srch_val}/${movie}/${tv}/${people}`);
+                        navigate(`/result/${srch_val}/${movie}/${tv}/${people}/1`);
                     }
                 }}
                 className='h-8 bg-white rounded-r-md p-2 hover:bg-zinc-200 text-black flex items-center'

@@ -3,9 +3,10 @@ import { useNavigate } from 'react-router-dom'
 import useFetch from '../components/useFetch';
 import Loading from '../components/Loading';
 import mvimage from "../assets/nopic-movie.jpg";
+import Pagination from '../components/Pagination';
 
 const Result = () => {
-    const { mvname, movieon, tvon, peopleon } = useParams();
+    const { mvname, movieon, tvon, peopleon, pagenum } = useParams();
     const navigate = useNavigate();
     var true_num = [
         ["movie", movieon.split("=")[1]],
@@ -32,16 +33,19 @@ const Result = () => {
     num < 2 || num === 0 ? notChecked = "" : notChecked;
     var option = num > 1 || num === 0 ? "multi" : checked;
 
-    const { data, error, loading } = useFetch(`https://api.themoviedb.org/3/search/${option}?query=${mvname}&include_adult=false&language=en-US&page=1`, "GET");
+    const { data, error, loading } = useFetch(`https://api.themoviedb.org/3/search/${option}?query=${mvname}&include_adult=false&language=en-US&page=${pagenum}`, "GET", `${pagenum}`);
     var title = document.querySelector("title");
     title.innerText = `${mvname} | Search Results`; //change the title
 
+    const setPageNumber = (number) => {
+        navigate(`/result/${mvname}/${movieon}/${tvon}/${peopleon}/${number}`);
+    }
+
+    if (loading) return <div className='mx-auto max-w-7xl p-6 lg:px-8 max-sm:px-2'><Loading /></div>;
+    if (error) return <div>Error: {error}</div>;
+
     return (
         <div className='mx-auto max-w-7xl  p-6 lg:px-8'>
-            {loading &&
-                <Loading />
-            }
-            {error && <div>{error}</div>}
             {data && (
                 <>
                     {console.log(data)}
@@ -101,6 +105,7 @@ const Result = () => {
                             })
                         }
                     </div>
+                    <Pagination page={pagenum} total={data.total_pages} set={setPageNumber} />
                 </>
             )}
         </div>
