@@ -33,18 +33,37 @@ const Trendings = (props) => {
                             snap: true
                         }}
                     >
-                        {data.results.map(image => {
+                        {data.results.map(movie => {
+                            var img_src = "";
+                            var location = "";
+
+                            //check type of collected data
+                            switch (type) {
+                                case 'movie':
+                                    img_src = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
+                                    location = `/movies/movieinfo/${movie.title}/${movie.id}`;
+                                    break;
+                                case 'tv':
+                                    img_src = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
+                                    location = `/tv/tvinfo/${movie.name}/${movie.id}`;
+                                    break;
+                                case 'person':
+                                    img_src = "https://image.tmdb.org/t/p/w500" + movie.profile_path;
+                                    location = `/people/${movie.name}/${movie.id}`;
+                                    break;
+                            }
+
                             return (
                                 <SplideSlide
-                                    key={image.id}
+                                    key={movie.id}
                                     className='cursor-pointer w-40'
                                 >
                                     <div className='container w-full cursor-pointer'
                                         onClick={() => {
-                                            navigate(`/movies/movieinfo/${image.title}/${image.id}`)
+                                            navigate(location)
                                         }}
                                     >
-                                        <img src={"https://image.tmdb.org/t/p/w300/" + image.poster_path} alt='img' className='h-full max-md:w-64' />
+                                        <img src={img_src} alt='img' className='h-full max-md:w-64' />
                                     </div>
                                 </SplideSlide>
                             )
