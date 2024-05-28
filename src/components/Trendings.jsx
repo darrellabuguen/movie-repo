@@ -4,16 +4,18 @@ import useFetch from './useFetch';
 import { useNavigate } from 'react-router-dom';
 import Loading from './Loading';
 
-const Trending = () => {
+const Trendings = (props) => {
+    const time = props.time;
+    const type = props.type;
     const navigate = useNavigate();
-    const { data, loading, error } = useFetch(`https://api.themoviedb.org/3/trending/movie/day?language=en-US`, "GET");
+    const { data, loading, error } = useFetch(`https://api.themoviedb.org/3/trending/${type}/${time}?language=en-US`, "GET");
 
     return (
         <div className='my-3'>
             <h1
                 className='text-2xl font-semibold text-blue-500 dark:text-gray-200'
             >
-                Trending Now
+                {time === "day" ? "Trending now" : `Top ${type} of the week`}
             </h1>
             {error && <div>{error}</div>}
             {
@@ -59,4 +61,4 @@ const Trending = () => {
     )
 }
 
-export default Trending
+export default Trendings

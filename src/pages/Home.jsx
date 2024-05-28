@@ -1,6 +1,5 @@
-import Trending from '../components/Trending'
+import Trendings from '../components/Trendings'
 import Upcoming from '../components/Upcoming'
-import Topweek from '../components/Topweek'
 import Random from '../components/Random'
 
 const Home = () => {
@@ -9,8 +8,8 @@ const Home = () => {
     return (
         <div className='mx-auto max-w-7xl  p-3 lg:px-8'>
             <Upcoming />
-            <Trending />
-            <Topweek />
+            <Trendings type="movie" time="day" />
+            <Trendings type="movie" time="week" />
             <Random />
         </div>
     )
