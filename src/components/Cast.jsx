@@ -34,7 +34,7 @@ const Cast = (props) => {
                                 onClick={() => {
                                     navigate(location);
                                 }}
-                                className='cursor-pointer w-40 text-center'
+                                className='cursor-pointer w-40 text-center max-sm:w-20 max-sm:text-left'
                             >
                                 <img src={image} alt="img" className='w-full' />
                                 <p
