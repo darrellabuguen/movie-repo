@@ -50,7 +50,7 @@ const MovieInfo = () => {
                             />
                             <br />
                             <div className='flex gap-4 max-sm:flex-col'>
-                                <div className=' w-40 flex-shrink-0'>
+                                <div className=' w-40 flex-shrink-0 max-sm:hidden'>
                                     <img
                                         src={`https://image.tmdb.org/t/p/original${data.poster_path}`}
                                         alt="img"
@@ -74,29 +74,25 @@ const MovieInfo = () => {
                                             }
                                         }}
                                     >{more}</div>
-                                    <table className='w-96'>
-                                        <tbody>
-                                            <tr>
-                                                <td>Release Date: {data.release_date}</td>
-                                                <td>Rating: {data.vote_average}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Runtime: {data.runtime} min</td>
-                                                <td>Budget: {data.budget}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Revenue: {data.revenue}</td>
-                                                <td>Status: {data.status}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Language: {data.original_language}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    <div className='flex gap-4 max-sm:flex-col max-sm:gap-0 mt-1 text-gray-300'>
+                                        <div>
+                                            <div>Release Date: {data.release_date}</div>
+                                            <div>Runtime: {data.runtime} min</div>
+                                            <div>Revenue: {data.revenue}</div>
+                                            <div>Language: {data.original_language}</div>
+                                        </div>
+                                        <div>
+                                            <div>Rating: {data.vote_average}</div>
+                                            <div>Budget: {data.budget}</div>
+                                            <div>Status: {data.status}</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <br />
                         <Cast id={movieid} type="movie" />
+                        <br />
                         <Recommendations id={movieid} type="movie" />
                     </>
                 )}
