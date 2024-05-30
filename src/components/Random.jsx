@@ -11,7 +11,7 @@ const Random = () => {
     return (
         <div className='my-3'>
             <h1
-                className='text-2xl font-semibold text-blue-500 dark:text-gray-200'
+                className='text-2xl font-semibold text-blue-500 dark:text-gray-200 mb-2'
             >
                 Random
             </h1>
@@ -45,7 +45,7 @@ const Random = () => {
                                             navigate(location);
                                         }}
                                     >
-                                        <img src={"https://image.tmdb.org/t/p/w300/" + img_src} alt='img' className='h-full max-md:w-64' />
+                                        <img src={"https://image.tmdb.org/t/p/w300/" + img_src} alt='img' className='h-full max-md:w-64  rounded-lg' />
                                     </div>
                                 </SplideSlide>
                             )

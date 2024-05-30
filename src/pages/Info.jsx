@@ -46,7 +46,7 @@ const Info = () => {
                                         }}
                                     >
                                         <div className='h-full relative'>
-                                            {type !== "person" && <div className='absolute top-2 right-2 p-1 bg-white rounded-sm text-black'>{year}</div>}
+                                            {type !== "person" && <div className='absolute top-2 right-2 p-1 bg-white rounded-sm text-black font-bold'>{year}</div>}
                                             <img src={img_src} alt='img' className='h-full rounded-lg' />
                                         </div>
                                         <p className=' line-clamp-1'>{title}</p>
