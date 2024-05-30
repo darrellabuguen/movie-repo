@@ -29,8 +29,10 @@ const Info = () => {
                         {
                             data.results.map(info => {
                                 const type = info.media_type;
+                                const year = type !== "person" ? info.release_date.split("-")[0] : "";
                                 var img_src = type === "person" ? `https://image.tmdb.org/t/p/w500${info.profile_path}` : `https://image.tmdb.org/t/p/w500${info.poster_path}`;
                                 var location = type === "person" ? `/people/${info.name}/${info.id}` : `/movies/movieinfo/${info.title}/${info.id}`;
+                                var title = type !== "person" ? info.title : info.name;
 
                                 //check if img_src is not null
                                 img_src !== "https://image.tmdb.org/t/p/w500null" ? img_src = img_src : img_src = mvimage;
@@ -38,13 +40,16 @@ const Info = () => {
                                 return (
                                     <div
                                         key={info.id}
-                                        className='container flex flex-col justify-center items-center text-center cursor-pointer'
+                                        className='container flex flex-col items-center cursor-pointer'
                                         onClick={() => {
                                             navigate(location);
                                         }}
                                     >
-                                        <img src={img_src} alt='img' className='h-full' />
-                                        <p className=' line-clamp-1'>{info.name}</p>
+                                        <div className='h-full relative'>
+                                            {type !== "person" && <div className='absolute top-2 right-2 p-1 bg-white rounded-sm text-black'>{year}</div>}
+                                            <img src={img_src} alt='img' className='h-full rounded-lg' />
+                                        </div>
+                                        <p className=' line-clamp-1'>{title}</p>
                                     </div>
                                 )
                             })
