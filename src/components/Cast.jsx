@@ -36,7 +36,7 @@ const Cast = (props) => {
                                 }}
                                 className='cursor-pointer w-40 text-center max-sm:w-20 max-sm:text-left'
                             >
-                                <img src={image} alt="img" className='w-full' />
+                                <img src={image} alt="img" className='w-full rounded-lg' />
                                 <p
                                     className='line-clamp-1'
                                     title={person.name}

@@ -39,7 +39,7 @@ const MovieCredits = (props) => {
                                 }}
                                 className='cursor-pointer w-40 text-center'
                             >
-                                <img src={image} alt="img" className='w-full' />
+                                <img src={image} alt="img" className='w-full rounded-lg' />
                                 <p
                                     className=' line-clamp-1'
                                     title={img_title}

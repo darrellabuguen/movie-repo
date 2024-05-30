@@ -46,7 +46,7 @@ const MovieInfo = () => {
                                 img_condition === `https://image.tmdb.org/t/p/original/${data.backdrop_path}` ? mvimage : `https://image.tmdb.org/t/p/original/${data.backdrop_path}`
                             }
                                 alt='img'
-                                className='h-full'
+                                className='h-full rounded-lg'
                             />
                             <br />
                             <div className='flex gap-4 max-sm:flex-col'>
@@ -54,6 +54,7 @@ const MovieInfo = () => {
                                     <img
                                         src={`https://image.tmdb.org/t/p/original${data.poster_path}`}
                                         alt="img"
+                                        className='rounded-lg'
                                     />
                                 </div>
                                 <div>
