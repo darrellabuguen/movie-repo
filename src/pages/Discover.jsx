@@ -28,6 +28,7 @@ const Categories = () => {
                     <div className='grid grid-cols-4 gap-4 max-md:grid-cols-3 max-sm:gap-2 max-sm:grid-cols-2'>
                         {
                             data.results.map(movie => {
+                                const year = movie.release_date.split("-")[0];
                                 return (
                                     <div
                                         key={movie.id}
@@ -36,7 +37,11 @@ const Categories = () => {
                                             navigate(`/movies/movieinfo/${movie.title}/${movie.id}`);
                                         }}
                                     >
-                                        <img src={"https://image.tmdb.org/t/p/w500/" + movie.poster_path} alt='img' className='h-full' />
+                                        <div className='h-full relative'>
+                                            <div className='absolute top-2 right-2 p-1 bg-white rounded-sm text-black font-bold'>{year}</div>
+                                            <img src={"https://image.tmdb.org/t/p/w500/" + movie.poster_path} alt='img' className='h-full rounded-lg' />
+                                        </div>
+                                        <p className=' line-clamp-1' title={movie.title}>{movie.title}</p>
                                     </div>
                                 )
                             })

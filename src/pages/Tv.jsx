@@ -26,6 +26,7 @@ const Tv = () => {
                     <div className='grid grid-cols-4 gap-4 max-md:grid-cols-3 max-sm:gap-2 max-sm:grid-cols-2'>
                         {
                             data.results.map(telev => {
+                                const year = telev.first_air_date.split("-")[0];
                                 return (
                                     <div
                                         key={telev.id}
@@ -34,7 +35,11 @@ const Tv = () => {
                                             navigate(`/tv/tvinfo/${telev.name}/${telev.id}`);
                                         }}
                                     >
-                                        <img src={"https://image.tmdb.org/t/p/w500/" + telev.poster_path} alt='img' className='h-full' />
+                                        <div className='h-full relative'>
+                                            <div className='absolute top-2 right-2 p-1 bg-white rounded-sm text-black font-bold'>{year}</div>
+                                            <img src={"https://image.tmdb.org/t/p/w500/" + telev.poster_path} alt='img' className='h-full rounded-lg' />
+                                        </div>
+                                        <p className=' line-clamp-1' title={telev.name}>{telev.name}</p>
                                     </div>
                                 )
                             })
