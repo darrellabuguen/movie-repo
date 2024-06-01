@@ -15,21 +15,23 @@ const MovieInfo = () => {
     const [more, setMore] = useState("See More");
     const img_condition = "https://image.tmdb.org/t/p/original/null";
 
-    const checkDescriptionHeight = () => {
-        const description_con = document.querySelector(".desc_con");
-        const description = document.querySelector(".desc");
-        if (description) {
-            if (description.scrollHeight == description_con.scrollHeight) {
-                setVisibility("");
-            } else {
-                setVisibility("hidden")
-            };
-        }
-    }
-
     useEffect(() => {
+        const checkDescriptionHeight = () => {
+            const description_con = document.querySelector(".desc_con");
+            const description = document.querySelector(".desc");
+            if (description) {
+                if (description.scrollHeight == description_con.scrollHeight) {
+                    setVisibility("");
+                } else {
+                    setVisibility("hidden")
+                };
+            }
+        }
         checkDescriptionHeight();
         window.addEventListener("resize", checkDescriptionHeight);
+        return () => {
+            window.removeEventListener("resize", checkDescriptionHeight);
+        }
     });
 
     if (loading) return <div className='mx-auto max-w-7xl p-6 lg:px-8 max-sm:px-2'>Getting movie info...</div>;
@@ -40,15 +42,14 @@ const MovieInfo = () => {
             {data &&
                 (
                     <>
-                        <h1 className=' text-2xl'>{data.title}</h1>
+                        <h1 className=' text-2xl max-sm:text-xl border-l-4 border-blue-500 pl-2 mb-2'>{data.title}</h1>
                         <div>
                             <img src={
                                 img_condition === `https://image.tmdb.org/t/p/original/${data.backdrop_path}` ? mvimage : `https://image.tmdb.org/t/p/original/${data.backdrop_path}`
                             }
                                 alt='img'
-                                className='h-full rounded-lg'
+                                className='h-full rounded-lg mb-3'
                             />
-                            <br />
                             <div className='flex gap-4 max-sm:flex-col'>
                                 <div className=' w-40 flex-shrink-0 max-sm:hidden'>
                                     <img

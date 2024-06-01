@@ -48,7 +48,6 @@ const Result = () => {
         <div className='mx-auto max-w-7xl p-6 lg:px-8 max-sm:px-2'>
             {data && (
                 <>
-                    {console.log(data)}
                     <div className=' sm:flex sm:justify-between sm:items-center'>
                         <span>Result for <b>{mvname}</b> </span>
                         <span>showing page {pagenum} of {data.total_pages}</span>
