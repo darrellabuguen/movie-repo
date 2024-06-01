@@ -38,7 +38,7 @@ const MovieInfo = () => {
     if (error) return <div>Error: {error}</div>;
 
     return (
-        <div className='mx-auto max-w-7xl  p-6 lg:px-8'>
+        <div className='mx-auto max-w-7xl  p-6 lg:px-8 max-sm:px-2'>
             {data &&
                 (
                     <>

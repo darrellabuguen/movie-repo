@@ -12,7 +12,7 @@ const Recommendations = (props) => {
 
     return (
         <>
-            <h1 className=' text-blue-500 sm:text-3xl'>You may also like</h1>
+            <h1 className=' text-blue-500 text-3xl max-sm:text-xl mb-2'>You may also like</h1>
             {error && <div>Error fetching data</div>}
             {loading && <div></div>}
             {data && (

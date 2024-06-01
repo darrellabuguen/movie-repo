@@ -35,16 +35,16 @@ const CelebrityInfo = () => {
     if (error) return <div>Error: {error}</div>;
 
     return (
-        <div className='mx-auto max-w-7xl  p-6 lg:px-8'>
+        <div className='mx-auto max-w-7xl  p-6 lg:px-8 max-sm:px-2'>
             {data && (
                 <>
-                    <h1 className=' text-2xl'>{celebname}</h1>
+                    <h1 className=' text-2xl max-sm:text-xl border-l-4 border-blue-500 pl-2 mb-2'>{celebname}</h1>
                     <div>
                         <img src={
                             img_condition === `https://image.tmdb.org/t/p/original/${data.profile_path}` ? profile : `https://image.tmdb.org/t/p/original/${data.profile_path}`
                         }
                             alt='img'
-                            className='w-72 rounded-lg' />
+                            className='w-72 rounded-lg mb-3' />
                         <div>
                             <h1>Biography:</h1>
                             <div className={`desc_con overflow-hidden ${con_height}`}>
