@@ -37,7 +37,7 @@ const TvInfo = () => {
     if (error) return <div>Error: {error}</div>;
 
     return (
-        <div className='mx-auto max-w-7xl  p-6 lg:px-8'>
+        <div className='mx-auto max-w-7xl  p-6 lg:px-8 max-sm:px-2'>
             {data && (
                 <>
                     <h1 className=' text-2xl max-sm:text-xl border-l-4 border-blue-500 pl-2 mb-2'>{data.name}</h1>
