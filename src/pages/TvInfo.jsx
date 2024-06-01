@@ -40,7 +40,7 @@ const TvInfo = () => {
         <div className='mx-auto max-w-7xl  p-6 lg:px-8'>
             {data && (
                 <>
-                    <h1 className=' text-2xl'>{data.name}</h1>
+                    <h1 className=' text-2xl max-sm:text-xl border-l-4 border-blue-500 pl-2 mb-2'>{data.name}</h1>
                     <div>
                         <img src={
                             img_condition === `https://image.tmdb.org/t/p/original/${data.backdrop_path}` ? mvimage : `https://image.tmdb.org/t/p/original/${data.backdrop_path}`
