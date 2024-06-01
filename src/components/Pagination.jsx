@@ -1,14 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
 
 const Pagination = (props) => {
     const page = props.page;
     const totalPages = props.total;
+    const [nextBtn, setNextBtn] = useState("");
+    const [prevBtn, setPrevBtn] = useState("");
+
+    useEffect(() => {
+        page == totalPages ? setNextBtn("pointer-events-none opacity-55") : setNextBtn("");
+        page == 1 ? setPrevBtn("pointer-events-none opacity-55") : setPrevBtn("");
+    });
 
     return (
         <div className='flex items-center justify-center gap-2 mt-4'>
             <button
-                className='text-white rounded-md cursor-pointer border-none p-2 flex items-center'
+                className={`text-white rounded-md cursor-pointer border-none p-2 flex items-center ${prevBtn}`}
                 style={{
                     backgroundColor: '#323232',
                     color: '#fff'
@@ -46,7 +53,7 @@ const Pagination = (props) => {
                 }}
             />
             <button
-                className='text-white rounded-md cursor-pointer border-none p-2 flex items-center'
+                className={`text-white rounded-md cursor-pointer border-none p-2 flex items-center ${nextBtn}`}
                 style={{
                     backgroundColor: '#323232',
                     color: '#fff'

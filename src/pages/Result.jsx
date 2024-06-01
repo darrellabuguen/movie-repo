@@ -45,12 +45,15 @@ const Result = () => {
     if (error) return <div>Error: {error}</div>;
 
     return (
-        <div className='mx-auto max-w-7xl  p-6 lg:px-8'>
+        <div className='mx-auto max-w-7xl p-6 lg:px-8 max-sm:px-2'>
             {data && (
                 <>
                     {console.log(data)}
-                    <h1>Result for {mvname}</h1>
-                    <div className='grid grid-cols-4 gap-4 max-md:grid-cols-3 max-sm:gap-2 max-sm:grid-cols-2'>
+                    <div className=' sm:flex sm:justify-between sm:items-center'>
+                        <span>Result for <b>{mvname}</b> </span>
+                        <span>showing {pagenum} of {data.total_pages}</span>
+                    </div>
+                    <div className='grid grid-cols-4 gap-4 max-md:grid-cols-3 max-sm:gap-2 max-sm:grid-cols-2 mt-2'>
                         {
                             data.results.map(movie => {
                                 const type = !movie.media_type ? `${checked}` : movie.media_type;
