@@ -51,7 +51,7 @@ const Result = () => {
                     {console.log(data)}
                     <div className=' sm:flex sm:justify-between sm:items-center'>
                         <span>Result for <b>{mvname}</b> </span>
-                        <span>showing {pagenum} of {data.total_pages}</span>
+                        <span>showing page {pagenum} of {data.total_pages}</span>
                     </div>
                     <div className='grid grid-cols-4 gap-4 max-md:grid-cols-3 max-sm:gap-2 max-sm:grid-cols-2 mt-2'>
                         {
@@ -60,7 +60,6 @@ const Result = () => {
                                 var img_src = "";
                                 var img_title = "";
                                 var location = "";
-                                var year = "";
 
                                 //check type of collected data
                                 switch (type) {
