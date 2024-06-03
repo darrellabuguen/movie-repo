@@ -9,13 +9,14 @@ const Trendings = (props) => {
     const type = props.type;
     const navigate = useNavigate();
     const { data, loading, error } = useFetch(`https://api.themoviedb.org/3/trending/${type}/${time}?language=en-US`, "GET");
+    var more = type == "movie" ? `/trending/${type}/1` : type == "tv" ? `/discover/tv/1` : `/trending/${type}/1`;
 
     return (
         <div className='my-3'>
             <h1
-                className='text-2xl font-semibold text-blue-500 dark:text-gray-200 mb-2'
+                className='text-2xl max-sm:text-xl font-semibold text-blue-500 dark:text-gray-200 mb-2'
             >
-                {time === "day" ? "Trending now" : `Top ${type} of the week`}
+                {`Today's trend in ${type}`}
             </h1>
             {error && <div>{error}</div>}
             {
@@ -70,7 +71,11 @@ const Trendings = (props) => {
                         })}
                     </Splide>
                     <div className='text-right text-blue-500'>
-                        <button>
+                        <button
+                            onClick={() => {
+                                navigate(more);
+                            }}
+                        >
                             View more
                         </button>
                     </div>

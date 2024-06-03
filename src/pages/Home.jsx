@@ -9,7 +9,7 @@ const Home = () => {
         <div className='mx-auto max-w-7xl  p-3 lg:px-8'>
             <Upcoming />
             <Trendings type="movie" time="day" />
-            <Trendings type="movie" time="week" />
+            <Trendings type="tv" time="day" />
             <Random />
         </div>
     )
