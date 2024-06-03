@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import "@splidejs/splide/dist/css/splide.min.css";
 import useFetch from './useFetch';
@@ -7,6 +7,23 @@ import { useNavigate } from 'react-router-dom';
 const Upcoming = () => {
     const { data, loading, error } = useFetch('https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1', "GET");
     const navigate = useNavigate();
+    const [height, setHeight] = React.useState("70vh");
+    const checkScreen = () => {
+        if (window.innerWidth <= 1024) {
+            setHeight("auto");
+        } else {
+            setHeight("70vh");
+        }
+    };
+
+    useEffect(() => {
+        checkScreen();
+        window.addEventListener("resize", checkScreen);
+        return () => {
+            window.removeEventListener("resize", checkScreen);
+        }
+    }, []);
+
     return (
         <>
             {error && <div>{error}</div>}
@@ -17,7 +34,8 @@ const Upcoming = () => {
                     rewind: true,
                     autoplay: true,
                     pause: false,
-                    interval: 6000
+                    interval: 6000,
+                    height: height
                 }}
             >
                 {
@@ -29,9 +47,6 @@ const Upcoming = () => {
                                     navigate(`/movies/movieinfo/${mv.title}/${mv.id}`)
                                 }}
                                 className=" relative cursor-pointer"
-                                style={{
-                                    height: "520px"
-                                }}
                             >
                                 <img src={"https://image.tmdb.org/t/p/original" + mv.backdrop_path} alt='img' className=' w-full' />
                                 <div
