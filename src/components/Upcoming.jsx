@@ -29,6 +29,9 @@ const Upcoming = () => {
                                     navigate(`/movies/movieinfo/${mv.title}/${mv.id}`)
                                 }}
                                 className=" relative cursor-pointer"
+                                style={{
+                                    height: "520px"
+                                }}
                             >
                                 <img src={"https://image.tmdb.org/t/p/original" + mv.backdrop_path} alt='img' className=' w-full' />
                                 <div
