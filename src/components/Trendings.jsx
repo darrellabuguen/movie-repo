@@ -1,23 +1,51 @@
 import { Splide, SplideSlide } from '@splidejs/react-splide'
 import "@splidejs/splide/dist/css/splide.min.css";
 import useFetch from './useFetch';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Loading from './Loading';
+import { ChevronRightIcon } from '@heroicons/react/16/solid';
+import { useState } from 'react';
 
 const Trendings = (props) => {
     const time = props.time;
     const type = props.type;
     const navigate = useNavigate();
     const { data, loading, error } = useFetch(`https://api.themoviedb.org/3/trending/${type}/${time}?language=en-US`, "GET");
-    var more = type == "movie" ? `/trending/${type}/1` : type == "tv" ? `/discover/tv/1` : `/trending/${type}/1`;
+    var more = type == "movie" ? `/trending/${type}/1` : type == "tv" ? `/discover/tv/1` : `/trending/${type}/1`;   //links
+    var [hovered, setHover] = useState("opacity-0 w-0");
+    var upperType = `${type.split("")[0].toUpperCase()}${type.substring(1)}`   //uppercased type
+    const itsHovered = () => {
+        setHover("opacity-100 w-full");
+    }
 
     return (
         <div className='my-3'>
-            <h1
-                className='text-2xl max-sm:text-xl font-semibold text-blue-500 dark:text-gray-200 mb-2'
+            <div
+                className='flex items-center gap-2'
+                onMouseOver={() => {
+                    itsHovered();
+                }}
+                onMouseLeave={() => {
+                    setHover("opacity-0 w-0");
+                }}
             >
-                {`Today's trend in ${type}`}
-            </h1>
+                <h1
+                    className='text-2xl cursor-pointer max-sm:text-xl font-semibold text-blue-500 dark:text-gray-200 mb-2'
+                    onClick={() => {
+                        navigate(more);
+                    }}
+                >
+                    {upperType + " trends"}
+                </h1>
+                <span className='flex items-center transition-all text-blue-500 delay-75'>
+                    <Link to={more}
+                        className={`text-sm max-sm:text-xl hover:underline hover:text-white transition-all delay-100 ${hovered}`}
+                    >
+                        Explore
+                    </Link>
+                    <ChevronRightIcon className='w-5 h-5' />
+                </span>
+            </div>
             {error && <div>{error}</div>}
             {
                 loading &&
@@ -41,15 +69,15 @@ const Trendings = (props) => {
                             //check type of collected data
                             switch (type) {
                                 case 'movie':
-                                    img_src = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
+                                    img_src = "https://image.tmdb.org/t/p/original" + movie.poster_path;
                                     location = `/movies/movieinfo/${movie.title}/${movie.id}`;
                                     break;
                                 case 'tv':
-                                    img_src = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
+                                    img_src = "https://image.tmdb.org/t/p/original" + movie.poster_path;
                                     location = `/tv/tvinfo/${movie.name}/${movie.id}`;
                                     break;
                                 case 'person':
-                                    img_src = "https://image.tmdb.org/t/p/w500" + movie.profile_path;
+                                    img_src = "https://image.tmdb.org/t/p/original" + movie.profile_path;
                                     location = `/people/${movie.name}/${movie.id}`;
                                     break;
                             }
@@ -70,15 +98,6 @@ const Trendings = (props) => {
                             )
                         })}
                     </Splide>
-                    <div className='text-right text-blue-500'>
-                        <button
-                            onClick={() => {
-                                navigate(more);
-                            }}
-                        >
-                            View more
-                        </button>
-                    </div>
                 </>
             }
         </div >

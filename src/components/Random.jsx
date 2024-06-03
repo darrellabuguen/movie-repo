@@ -11,7 +11,7 @@ const Random = () => {
     return (
         <div className='my-3'>
             <h1
-                className='text-2xl font-semibold text-blue-500 dark:text-gray-200 mb-2'
+                className='text-2xl max-sm:text-xl font-semibold text-blue-500 dark:text-gray-200 mb-2'
             >
                 Random
             </h1>
