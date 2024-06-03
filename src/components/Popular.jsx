@@ -6,12 +6,11 @@ import Loading from './Loading';
 import { ChevronRightIcon } from '@heroicons/react/16/solid';
 import { useState } from 'react';
 
-const Trendings = (props) => {
-    const time = props.time;
+const Popular = (props) => {
     const type = props.type;
     const navigate = useNavigate();
-    const { data, loading, error } = useFetch(`https://api.themoviedb.org/3/trending/${type}/${time}?language=en-US`, "GET");
-    var more = type == "movie" ? `/trending/${type}/1` : type == "tv" ? `/discover/tv/1` : `/trending/${type}/1`;   //links
+    const { data, loading, error } = useFetch(`https://api.themoviedb.org/3/${type}/popular?language=en-US&page=1`, "GET");
+    var more = `/popular/${type}/1`;   //links
     var [hovered, setHover] = useState("opacity-0 w-0");
     var upperType = `${type.split("")[0].toUpperCase()}${type.substring(1)}`   //uppercased type
     const itsHovered = () => {
@@ -35,7 +34,7 @@ const Trendings = (props) => {
                         navigate(more);
                     }}
                 >
-                    {upperType + " trends"}
+                    {upperType}
                 </h1>
                 <span className='flex items-center transition-all text-blue-500 delay-75'>
                     <Link to={more}
@@ -104,4 +103,4 @@ const Trendings = (props) => {
     )
 }
 
-export default Trendings
+export default Popular

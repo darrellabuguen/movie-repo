@@ -1,6 +1,5 @@
-import Trendings from '../components/Trendings'
+import Popular from '../components/Popular'
 import Upcoming from '../components/Upcoming'
-import Random from '../components/Random'
 
 const Home = () => {
     var title = document.querySelector("title");
@@ -8,9 +7,10 @@ const Home = () => {
     return (
         <div className='mx-auto max-w-7xl  p-3 lg:px-8'>
             <Upcoming />
-            <Trendings type="movie" time="day" />
-            <Trendings type="tv" time="day" />
-            <Random />
+            <h1 className='my-3 text-3xl text-blue-500 max-sm:text-2xl font-semibold'>Popular</h1>
+            <Popular type="movie" time="day" />
+            <Popular type="tv" time="day" />
+            <Popular type="person" time="week" />
         </div>
     )
 }
