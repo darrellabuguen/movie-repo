@@ -56,7 +56,7 @@ const Trendings = (props) => {
                             return (
                                 <SplideSlide
                                     key={movie.id}
-                                    className='cursor-pointer w-40'
+                                    className='cursor-pointer w-40 max-sm:w-28'
                                 >
                                     <div className='container w-full cursor-pointer'
                                         onClick={() => {

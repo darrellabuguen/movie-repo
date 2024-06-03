@@ -38,7 +38,7 @@ const Random = () => {
                             return (
                                 <SplideSlide
                                     key={movie.id}
-                                    className='cursor-pointer w-40 text-center'
+                                    className='cursor-pointer w-40 max-sm:w-28 text-center'
                                 >
                                     <div className='container w-full cursor-pointer'
                                         onClick={() => {
