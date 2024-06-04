@@ -57,8 +57,7 @@ const Popular = (props) => {
                             autoWidth: true,
                             gap: "0.5rem",
                             drag: "free",
-                            pagination: false,
-                            snap: true
+                            pagination: false
                         }}
                     >
                         {data.results.map(movie => {
