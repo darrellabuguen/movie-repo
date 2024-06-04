@@ -27,6 +27,7 @@ const PopularPage = () => {
                     <div className='grid grid-cols-4 gap-4 max-md:grid-cols-3 max-sm:gap-2 max-sm:grid-cols-2 mt-2'>
                         {
                             data.results.map(movie => {
+                                var year = "";
                                 var img_src = "";
                                 var img_title = "";
                                 var location = "";
@@ -37,11 +38,13 @@ const PopularPage = () => {
                                         img_src = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
                                         img_title = movie.title;
                                         location = `/movies/movieinfo/${movie.title}/${movie.id}`;
+                                        year = movie.release_date.split("-")[0];
                                         break;
                                     case 'tv':
                                         img_src = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
                                         img_title = movie.name;
                                         location = `/tv/tvinfo/${movie.name}/${movie.id}`;
+                                        year = movie.first_air_date.split("-")[0];
                                         break;
                                     case 'person':
                                         img_src = "https://image.tmdb.org/t/p/w500" + movie.profile_path;
@@ -62,7 +65,7 @@ const PopularPage = () => {
                                         }}
                                     >
                                         <div className='h-full relative'>
-                                            <div className='absolute top-2 right-2 py-1 px-2 bg-white rounded-sm text-black font-bold'>{type}</div>
+                                            {type !== "person" && <div className='absolute top-2 right-2 p-1 bg-white rounded-sm text-black font-bold'>{year}</div>}
                                             <img src={img_src} alt='img' className='h-full rounded-lg' />
                                         </div>
                                         <p
