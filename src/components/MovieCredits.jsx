@@ -12,7 +12,7 @@ const MovieCredits = (props) => {
 
     return (
         <>
-            <h1 className='mb-2 text-xl border-l-4 border-blue-500 pl-2 mt-2'>Movies Featuring {name}</h1>
+            <h1 className='mb-2 text-xl border-l-4 border-blue-500 pl-2 mt-2'>Known for</h1>
             {error && <div>Error fetching data</div>}
             {loading && <div></div>}
             {data && (
