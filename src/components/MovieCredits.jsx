@@ -6,7 +6,6 @@ import mvimage from "../assets/nopic-movie.jpg";
 
 const MovieCredits = (props) => {
     const id = props.id;
-    const name = props.name;
     const { data, loading, error } = useFetch(`https://api.themoviedb.org/3/person/${id}/combined_credits?language=en-US`, "GET");
     const navigate = useNavigate();
 
