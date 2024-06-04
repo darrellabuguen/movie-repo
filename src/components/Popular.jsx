@@ -67,15 +67,15 @@ const Popular = (props) => {
                             //check type of collected data
                             switch (type) {
                                 case 'movie':
-                                    img_src = "https://image.tmdb.org/t/p/original" + movie.poster_path;
+                                    img_src = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
                                     location = `/movies/movieinfo/${movie.title}/${movie.id}`;
                                     break;
                                 case 'tv':
-                                    img_src = "https://image.tmdb.org/t/p/original" + movie.poster_path;
+                                    img_src = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
                                     location = `/tv/tvinfo/${movie.name}/${movie.id}`;
                                     break;
                                 case 'person':
-                                    img_src = "https://image.tmdb.org/t/p/original" + movie.profile_path;
+                                    img_src = "https://image.tmdb.org/t/p/w500" + movie.profile_path;
                                     location = `/people/${movie.name}/${movie.id}`;
                                     break;
                             }
