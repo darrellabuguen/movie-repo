@@ -42,7 +42,7 @@ const Popular = (props) => {
                     >
                         Explore
                     </Link>
-                    <ChevronRightIcon className='w-5 h-5' />
+                    <ChevronRightIcon className='w-5 h-5 max-sm:h-4 max-sm:w-4' />
                 </span>
             </div>
             {error && <div>{error}</div>}
