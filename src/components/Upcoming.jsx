@@ -7,12 +7,12 @@ import { useNavigate } from 'react-router-dom';
 const Upcoming = () => {
     const { data, loading, error } = useFetch('https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1', "GET");
     const navigate = useNavigate();
-    const [height, setHeight] = React.useState("70vh");
+    const [height, setHeight] = React.useState("33rem");
     const checkScreen = () => {
         if (window.innerWidth <= 1024) {
             setHeight("auto");
         } else {
-            setHeight("70vh");
+            setHeight("33rem");
         }
     };
 
