@@ -38,6 +38,7 @@ const Result = () => {
     title.innerText = `${mvname} | Search Results`; //change the title
 
     const setPageNumber = (number) => {
+        window.scrollTo(0, 0);
         navigate(`/result/${mvname}/${movieon}/${tvon}/${peopleon}/${number}`);
     }
 

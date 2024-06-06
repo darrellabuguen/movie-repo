@@ -12,6 +12,7 @@ const Tv = () => {
     title.innerText = `TV | Discover`; //change the title
 
     const setPageNumber = (number) => {
+        window.scrollTo(0, 0);
         navigate(`/discover/tv/${number}`);
     }
 

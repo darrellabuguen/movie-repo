@@ -12,6 +12,7 @@ const Info = () => {
     title.innerText = trendings === "person" ? "People" : "Movies";
 
     const setPageNumber = (number) => {
+        window.scrollTo(0, 0);
         navigate(`/trending/${trendings}/${number}`);
     }
 

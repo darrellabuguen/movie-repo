@@ -14,6 +14,7 @@ const Categories = () => {
     title.innerText = `${discover} | Discover`;
 
     const setPageNumber = (number) => {
+        window.scrollTo(0, 0);
         navigate(`/discover/${discover}/${number}`);
     }
 

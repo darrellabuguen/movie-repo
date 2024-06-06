@@ -14,6 +14,7 @@ const PopularPage = () => {
     title.innerText = `${type} | Popular`; //change the title
 
     const setPageNumber = (number) => {
+        window.scrollTo(0, 0);
         navigate(`/popular/${type}/${number}`);
     }
 
