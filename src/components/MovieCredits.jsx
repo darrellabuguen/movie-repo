@@ -1,13 +1,12 @@
 import React from 'react'
 import useFetch from './useFetch'
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import mvimage from "../assets/nopic-movie.jpg";
 
 const MovieCredits = (props) => {
     const id = props.id;
     const { data, loading, error } = useFetch(`https://api.themoviedb.org/3/person/${id}/combined_credits?language=en-US`, "GET");
-    const navigate = useNavigate();
 
     return (
         <>
@@ -33,16 +32,15 @@ const MovieCredits = (props) => {
                         return (
                             <SplideSlide
                                 key={movie.id}
-                                onClick={() => {
-                                    navigate(location);
-                                }}
                                 className='cursor-pointer w-40 text-center'
                             >
-                                <img src={image} alt="img" className='w-full rounded-lg' />
-                                <p
-                                    className=' line-clamp-1'
-                                    title={img_title}
-                                >{img_title}</p>
+                                <Link to={location}>
+                                    <img src={image} alt="img" className='w-full rounded-lg' />
+                                    <p
+                                        className=' line-clamp-1'
+                                        title={img_title}
+                                    >{img_title}</p>
+                                </Link>
                             </SplideSlide>
                         )
                     })}

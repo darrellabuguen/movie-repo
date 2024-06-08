@@ -1,6 +1,6 @@
 import React from 'react'
 import useFetch from './useFetch'
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import mvimage from "../assets/nopic-movie.jpg";
 
@@ -8,7 +8,6 @@ const Recommendations = (props) => {
     const id = props.id;
     const type = props.type;
     const { data, loading, error } = useFetch(`https://api.themoviedb.org/3/${type}/${id}/recommendations?language=en-US&page=1`, "GET");
-    const navigate = useNavigate();
 
     return (
         <>
@@ -34,16 +33,15 @@ const Recommendations = (props) => {
                         return (
                             <SplideSlide
                                 key={movie.id}
-                                onClick={() => {
-                                    navigate(location);
-                                }}
                                 className='cursor-pointer w-40 text-center'
                             >
-                                <img src={image} alt="img" className='w-full rounded-lg' />
-                                <p
-                                    className=' line-clamp-1'
-                                    title={img_title}
-                                >{img_title}</p>
+                                <Link to={location}>
+                                    <img src={image} alt="img" className='w-full rounded-lg' />
+                                    <p
+                                        className=' line-clamp-1'
+                                        title={img_title}
+                                    >{img_title}</p>
+                                </Link>
                             </SplideSlide>
                         )
                     })}
