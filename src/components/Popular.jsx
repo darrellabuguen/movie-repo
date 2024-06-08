@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Loading from './Loading';
 import { ChevronRightIcon } from '@heroicons/react/16/solid';
 import { useState } from 'react';
+import mvimage from "../assets/nopic-movie.jpg";
 
 const Popular = (props) => {
     const type = props.type;
@@ -78,6 +79,9 @@ const Popular = (props) => {
                                     location = `/people/${movie.name}/${movie.id}`;
                                     break;
                             }
+
+                            //check if img_src is not null
+                            img_src !== "https://image.tmdb.org/t/p/w500null" ? img_src = img_src : img_src = mvimage;
 
                             return (
                                 <SplideSlide
