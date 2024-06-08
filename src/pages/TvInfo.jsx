@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import useFetch from '../components/useFetch';
 import Cast from '../components/Cast';
 import mvimage from "../assets/nopic-movie-banner.jpg";
@@ -31,6 +31,7 @@ const TvInfo = () => {
     useEffect(() => {
         checkDescriptionHeight();
         window.addEventListener("resize", checkDescriptionHeight);
+        console.log(data);
     });
 
     if (loading) return <div className='mx-auto max-w-7xl p-6 lg:px-8 max-sm:px-2'>Getting tv info...</div>;
@@ -44,27 +45,65 @@ const TvInfo = () => {
                     <div>
                         <img src={
                             img_condition === `https://image.tmdb.org/t/p/original/${data.backdrop_path}` ? mvimage : `https://image.tmdb.org/t/p/original/${data.backdrop_path}`
-                        } alt='img' className='h-full' />
-                        <h1>Overview :</h1>
-                        <div className={`desc_con overflow-hidden ${con_height}`}>
-                            <p
-                                className={`text-gray-300 desc`}
-                            >{data.overview}</p>
+                        } alt='img' className='h-full rounded-lg mb-3' />
+                        <div className='flex gap-4 max-sm:flex-col'>
+                            <div className=' w-40 flex-shrink-0 max-sm:hidden'>
+                                <img
+                                    src={`https://image.tmdb.org/t/p/original${data.poster_path}`}
+                                    alt="img"
+                                    className='rounded-lg'
+                                />
+                            </div>
+                            <div>
+                                <div className={`desc_con overflow-hidden ${con_height}`}>
+                                    <p
+                                        className={`text-gray-300 desc`}
+                                    >{data.overview}</p>
+                                </div>
+                                <div
+                                    className={`text-blue-500 cursor-pointer ${visible}`}
+                                    onClick={() => {
+                                        if (con_height === "h-16") {
+                                            setHeight("max-h-full");
+                                            setMore("See Less");
+                                        } else {
+                                            setHeight("h-16");
+                                            setMore("See More");
+                                        }
+                                    }}
+                                >{more}</div>
+                                <div className='flex gap-4 max-sm:flex-col max-sm:gap-0 mt-1 text-gray-300'>
+                                    <div>
+                                        <div>Released: {data.first_air_date}</div>
+                                        <div>
+                                            <span>Genre: </span>
+                                            {data.genres.map(genre => {
+                                                return (
+                                                    <Link
+                                                        key={genre.id}
+                                                        to={genre.id}
+                                                        className='mr-2 hover:text-blue-500 max-sm:underline max-sm:text-blue-500'
+                                                    >
+                                                        {genre.name}
+                                                    </Link>
+                                                )
+                                            })}
+                                        </div>
+                                        <div>Runtime: {data.episode_run_time} min</div>
+                                        <div>Language: {data.original_language}</div>
+                                    </div>
+                                    <div>
+                                        <div>Season/s: {data.last_episode_to_air.season_number}</div>
+                                        <div>Rating: {data.vote_average}</div>
+                                        <div>Status: {data.status}</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div
-                            className={`text-blue-500 cursor-pointer ${visible}`}
-                            onClick={() => {
-                                if (con_height === "h-16") {
-                                    setHeight("max-h-full");
-                                    setMore("See Less");
-                                } else {
-                                    setHeight("h-16");
-                                    setMore("See More");
-                                }
-                            }}
-                        >{more}</div>
                     </div>
+                    <br />
                     <Cast id={data.id} type="tv" />
+                    <br />
                     <Recommendations id={data.id} type="tv" />
                 </>
             )}

@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import useFetch from '../components/useFetch'
 import Loading from '../components/Loading';
 import Pagination from '../components/Pagination';
@@ -39,19 +39,17 @@ const Info = () => {
                                 img_src !== "https://image.tmdb.org/t/p/w500null" ? img_src = img_src : img_src = mvimage;
 
                                 return (
-                                    <div
+                                    <Link
                                         key={info.id}
                                         className='container flex flex-col items-center cursor-pointer'
-                                        onClick={() => {
-                                            navigate(location);
-                                        }}
+                                        to={location}
                                     >
                                         <div className='h-full relative'>
                                             {type !== "person" && <div className='absolute top-2 right-2 p-1 bg-white rounded-sm text-black font-bold'>{year}</div>}
                                             <img src={img_src} alt='img' className='h-full rounded-lg' />
                                         </div>
                                         <p className=' line-clamp-1'>{title}</p>
-                                    </div>
+                                    </Link>
                                 )
                             })
                         }
