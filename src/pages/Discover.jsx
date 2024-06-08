@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import useFetch from '../components/useFetch';
 import Loading from '../components/Loading';
@@ -31,19 +31,17 @@ const Categories = () => {
                             data.results.map(movie => {
                                 const year = movie.release_date.split("-")[0];
                                 return (
-                                    <div
+                                    <Link
                                         key={movie.id}
                                         className='container flex flex-col justify-center items-center text-center cursor-pointer'
-                                        onClick={() => {
-                                            navigate(`/movies/movieinfo/${movie.title}/${movie.id}`);
-                                        }}
+                                        to={`/movies/movieinfo/${movie.title}/${movie.id}`}
                                     >
                                         <div className='h-full relative'>
                                             <div className='absolute top-2 right-2 p-1 bg-white rounded-sm text-black font-bold'>{year}</div>
                                             <img src={"https://image.tmdb.org/t/p/w500/" + movie.poster_path} alt='img' className='h-full rounded-lg' />
                                         </div>
                                         <p className=' line-clamp-1' title={movie.title}>{movie.title}</p>
-                                    </div>
+                                    </Link>
                                 )
                             })
                         }

@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import useFetch from '../components/useFetch';
 import Loading from '../components/Loading';
@@ -87,12 +87,10 @@ const Result = () => {
 
                                         if (type !== notChecked) {
                                             return (
-                                                <div
+                                                <Link
                                                     key={movie.id}
                                                     className='container flex flex-col justify-center items-center text-center cursor-pointer'
-                                                    onClick={() => {
-                                                        navigate(location);
-                                                    }}
+                                                    to={location}
                                                 >
                                                     <div className='h-full relative'>
                                                         <div className='absolute top-2 right-2 py-1 px-2 bg-white rounded-sm text-black font-bold'>{type}</div>
@@ -104,7 +102,7 @@ const Result = () => {
                                                     >
                                                         {img_title}
                                                     </p>
-                                                </div>
+                                                </Link>
                                             )
                                         } else {
                                             return null;

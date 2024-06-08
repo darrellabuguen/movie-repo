@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 import useFetch from '../components/useFetch';
 import Loading from '../components/Loading';
 import mvimage from "../assets/nopic-movie.jpg";
@@ -6,7 +6,7 @@ import Pagination from '../components/Pagination';
 
 const PopularPage = () => {
     const { type, pagenum } = useParams();
-
+    const navigate = useNavigate();
     const { data, error, loading } = useFetch(`https://api.themoviedb.org/3/${type}/popular?language=en-US&page=${pagenum}`, "GET", `${pagenum}`);
     var title = document.querySelector("title");
     title.innerText = `${type} | Popular`; //change the title

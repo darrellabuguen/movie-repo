@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import useFetch from '../components/useFetch'
 import Loading from '../components/Loading';
 import Pagination from '../components/Pagination';
@@ -29,19 +29,17 @@ const Tv = () => {
                             data.results.map(telev => {
                                 const year = telev.first_air_date.split("-")[0];
                                 return (
-                                    <div
+                                    <Link
                                         key={telev.id}
                                         className='container flex flex-col justify-center items-center text-center cursor-pointer'
-                                        onClick={() => {
-                                            navigate(`/tv/tvinfo/${telev.name}/${telev.id}`);
-                                        }}
+                                        to={`/tv/tvinfo/${telev.name}/${telev.id}`}
                                     >
                                         <div className='h-full relative'>
                                             <div className='absolute top-2 right-2 p-1 bg-white rounded-sm text-black font-bold'>{year}</div>
                                             <img src={"https://image.tmdb.org/t/p/w500/" + telev.poster_path} alt='img' className='h-full rounded-lg' />
                                         </div>
                                         <p className=' line-clamp-1' title={telev.name}>{telev.name}</p>
-                                    </div>
+                                    </Link>
                                 )
                             })
                         }
