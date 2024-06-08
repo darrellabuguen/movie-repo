@@ -1,7 +1,7 @@
 import { Splide, SplideSlide } from '@splidejs/react-splide'
 import "@splidejs/splide/dist/css/splide.min.css";
 import useFetch from './useFetch';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Loading from './Loading';
 import { ChevronRightIcon } from '@heroicons/react/16/solid';
 import { useState } from 'react';
@@ -9,6 +9,7 @@ import mvimage from "../assets/nopic-movie.jpg";
 
 const Popular = (props) => {
     const type = props.type;
+    const navigate = useNavigate();
     const { data, loading, error } = useFetch(`https://api.themoviedb.org/3/${type}/popular?language=en-US&page=1`, "GET");
     var more = `/popular/${type}/1`;   //links
     var [hovered, setHover] = useState("opacity-0 w-0");
