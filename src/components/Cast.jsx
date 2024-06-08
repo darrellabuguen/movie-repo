@@ -1,6 +1,6 @@
 import React from 'react'
 import useFetch from './useFetch'
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import profile from "../assets/profile1.jpg";
 
@@ -8,7 +8,6 @@ const Cast = (props) => {
     const id = props.id;
     const type = props.type;
     const { data, loading, error } = useFetch(`https://api.themoviedb.org/3/${type}/${id}/credits?language=en-US`, "GET");
-    const navigate = useNavigate();
 
     return (
         <>
@@ -31,16 +30,15 @@ const Cast = (props) => {
                         return (
                             <SplideSlide
                                 key={person.id}
-                                onClick={() => {
-                                    navigate(location);
-                                }}
                                 className='cursor-pointer w-40 text-center max-sm:w-20 max-sm:text-left'
                             >
-                                <img src={image} alt="img" className='w-full rounded-lg' />
-                                <p
-                                    className='line-clamp-1'
-                                    title={person.name}
-                                >{person.name}</p>
+                                <Link to={location}>
+                                    <img src={image} alt="img" className='w-full rounded-lg' />
+                                    <p
+                                        className='line-clamp-1'
+                                        title={person.name}
+                                    >{person.name}</p>
+                                </Link>
                             </SplideSlide>
                         )
                     })}
