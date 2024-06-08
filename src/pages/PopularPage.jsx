@@ -1,5 +1,4 @@
-import { useParams } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import useFetch from '../components/useFetch';
 import Loading from '../components/Loading';
 import mvimage from "../assets/nopic-movie.jpg";
@@ -7,7 +6,6 @@ import Pagination from '../components/Pagination';
 
 const PopularPage = () => {
     const { type, pagenum } = useParams();
-    const navigate = useNavigate();
 
     const { data, error, loading } = useFetch(`https://api.themoviedb.org/3/${type}/popular?language=en-US&page=${pagenum}`, "GET", `${pagenum}`);
     var title = document.querySelector("title");
@@ -58,12 +56,10 @@ const PopularPage = () => {
                                 img_src !== "https://image.tmdb.org/t/p/w500null" ? img_src = img_src : img_src = mvimage;
 
                                 return (
-                                    <div
+                                    <Link
                                         key={movie.id}
                                         className='container flex flex-col justify-center items-center text-center cursor-pointer'
-                                        onClick={() => {
-                                            navigate(location);
-                                        }}
+                                        to={location}
                                     >
                                         <div className='h-full relative'>
                                             {type !== "person" && <div className='absolute top-2 right-2 p-1 bg-white rounded-sm text-black font-bold'>{year}</div>}
@@ -75,7 +71,7 @@ const PopularPage = () => {
                                         >
                                             {img_title}
                                         </p>
-                                    </div>
+                                    </Link>
                                 )
                             })
                         }
