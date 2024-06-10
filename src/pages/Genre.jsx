@@ -5,6 +5,7 @@ import { ChevronRightIcon } from '@heroicons/react/16/solid';
 import Loading from '../components/Loading';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import Pagination from '../components/Pagination';
+import genres from '../genre.json';
 
 const Genre = (props) => {
     const navigate = useNavigate();
@@ -124,7 +125,34 @@ const Genre = (props) => {
             {/* Load as a page when type param is set*/}
             {data && type &&
                 <div className='mx-auto max-w-7xl p-6 lg:px-8 max-sm:px-2'>
-                    <h1>{genreNameProps}</h1>
+                    <div
+                        className='flex items-center justify-between'
+                    >
+                        <h1>{genreNameProps}</h1>
+                        <select
+                            name="genreJSON"
+                            id="genreJSON"
+                            style={{
+                                backgroundColor: "#202020",
+                            }}
+                            className=' border-gray-500 border rounded-md p-2'
+                            value={genreNameProps}
+                            onChange={(e) => {
+                                navigate(`/${typeProps}/${e.target.value}/${e.target.options[e.target.selectedIndex].text}/1`)
+                            }}
+                        >
+                            {genres.genres.map((item, index) => {
+                                return (
+                                    <option
+                                        key={index}
+                                        value={item.id}
+                                    >
+                                        {item.name}
+                                    </option>
+                                )
+                            })}
+                        </select>
+                    </div>
                     <div className='grid grid-cols-4 gap-4 max-md:grid-cols-3 max-sm:gap-2 max-sm:grid-cols-2'>
                         {
                             data.results.map(movie => {
