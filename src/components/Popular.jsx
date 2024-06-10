@@ -35,11 +35,11 @@ const Popular = (props) => {
                         navigate(more);
                     }}
                 >
-                    {upperType}
+                    Popular {upperType}
                 </h1>
                 <span className='flex items-center transition-all text-blue-500 delay-75'>
                     <Link to={more}
-                        className={`text-sm max-sm:text-xl hover:underline hover:text-white transition-all delay-100 ${hovered}`}
+                        className={`text-sm hover:underline hover:text-white transition-all delay-100 ${hovered}`}
                     >
                         Explore
                     </Link>

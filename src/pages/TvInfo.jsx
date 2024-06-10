@@ -8,8 +8,11 @@ import Recommendations from '../components/Recommendations';
 const TvInfo = () => {
     const { tvname, tvid } = useParams();
     const { data, loading, error } = useFetch(`https://api.themoviedb.org/3/tv/${tvid}?language=en-US`, "GET", `${tvid}`);
-    var title = document.querySelector("title");
-    title.innerText = `${tvname} | TV Info`; //change the title
+
+    //change the title
+    let title = document.querySelector("title");
+    title.innerText = `${tvname} | TV Info`;
+
     const img_condition = "https://image.tmdb.org/t/p/original/null";
 
     const [con_height, setHeight] = useState("h-16");
@@ -80,7 +83,7 @@ const TvInfo = () => {
                                                 return (
                                                     <Link
                                                         key={genre.id}
-                                                        to={genre.id}
+                                                        to={`/tv/${genre.id}/${genre.name}/1`}
                                                         className='mr-2 hover:text-blue-500 max-sm:underline max-sm:text-blue-500'
                                                     >
                                                         {genre.name}

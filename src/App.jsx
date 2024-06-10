@@ -11,6 +11,7 @@ import TvInfo from './pages/TvInfo';
 import Info from './pages/Info';
 import ButtonUp from './components/ButtonUp';
 import PopularPage from './pages/PopularPage';
+import Genre from './pages/Genre';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route exact path='/discover/tv/:pagenum' element={<Tv />} />
           <Route exact path='/tv/tvinfo/:tvname/:tvid' element={<TvInfo />} />
           <Route exact path='/popular/:type/:pagenum' element={<PopularPage />} />
+          <Route exact path='/:type/:genre/:genreName/:pagenum' element={<Genre />} />
         </Routes>
       </Router>
       <ButtonUp />
