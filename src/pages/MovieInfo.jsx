@@ -84,8 +84,9 @@ const MovieInfo = () => {
                                             <div>Language: {data.original_language}</div>
                                         </div>
                                         <div>
-                                            <div>
-                                                Genre: {data.genres.map((genre, index) => {
+                                            <div className='break-words'>
+                                                <span>Genre: </span>
+                                                {data.genres.map((genre, index) => {
                                                     return (
                                                         <>
                                                             <Link

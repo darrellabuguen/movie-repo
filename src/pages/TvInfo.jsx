@@ -77,7 +77,7 @@ const TvInfo = () => {
                                 <div className='flex gap-4 max-sm:flex-col max-sm:gap-0 mt-1 text-gray-300'>
                                     <div>
                                         <div>Released: {data.first_air_date}</div>
-                                        <div>
+                                        <div className='break-words'>
                                             <span>Genre: </span>
                                             {data.genres.map((genre, index) => {
                                                 return (
