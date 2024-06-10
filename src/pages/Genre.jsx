@@ -124,7 +124,8 @@ const Genre = (props) => {
             {/* Load as a page when type param is set*/}
             {data && type &&
                 <div className='mx-auto max-w-7xl p-6 lg:px-8 max-sm:px-2'>
-                    <div className='grid grid-cols-4 gap-4 max-md:grid-cols-3 max-sm:gap-2 max-sm:grid-cols-2 mt-2'>
+                    <h1>{genreNameProps}</h1>
+                    <div className='grid grid-cols-4 gap-4 max-md:grid-cols-3 max-sm:gap-2 max-sm:grid-cols-2'>
                         {
                             data.results.map(movie => {
                                 var year = "";
