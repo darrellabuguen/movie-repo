@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import useFetch from '../components/useFetch';
 import Cast from '../components/Cast';
 import mvimage from "../assets/nopic-movie-banner.jpg";
@@ -84,6 +84,22 @@ const MovieInfo = () => {
                                             <div>Language: {data.original_language}</div>
                                         </div>
                                         <div>
+                                            <div>
+                                                Genre: {data.genres.map((genre, index) => {
+                                                    return (
+                                                        <>
+                                                            <Link
+                                                                key={genre.id}
+                                                                to={`/movie/${genre.id}/${genre.name}/1`}
+                                                                className='mr-2 hover:text-blue-500 max-sm:underline max-sm:text-blue-500'
+                                                            >
+                                                                {genre.name}
+                                                                {index == data.genres.length - 1 ? "" : ","}
+                                                            </Link>
+                                                        </>
+                                                    )
+                                                })}
+                                            </div>
                                             <div>Rating: {data.vote_average}</div>
                                             <div>Budget: {data.budget}</div>
                                             <div>Status: {data.status}</div>

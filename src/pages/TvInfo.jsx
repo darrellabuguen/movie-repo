@@ -79,7 +79,7 @@ const TvInfo = () => {
                                         <div>Released: {data.first_air_date}</div>
                                         <div>
                                             <span>Genre: </span>
-                                            {data.genres.map(genre => {
+                                            {data.genres.map((genre, index) => {
                                                 return (
                                                     <Link
                                                         key={genre.id}
@@ -87,6 +87,7 @@ const TvInfo = () => {
                                                         className='mr-2 hover:text-blue-500 max-sm:underline max-sm:text-blue-500'
                                                     >
                                                         {genre.name}
+                                                        {index == data.genres.length - 1 ? "" : ","}
                                                     </Link>
                                                 )
                                             })}
