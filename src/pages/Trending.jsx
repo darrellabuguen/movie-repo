@@ -25,7 +25,24 @@ const Info = () => {
         >
             {data && (
                 <>
-                    <h1>{trendings === "person" ? "People" : trendings === "tv" ? "TV" : "Movies"}</h1>
+                    <div className='flex items-center justify-between'>
+                        <h1>{trendings === "person" ? "People" : trendings === "tv" ? "TV" : "Movies"}</h1>
+                        <select
+                            name="trend-type"
+                            id="trend-type"
+                            className='p-2 border border-gray-500 rounded-md'
+                            style={{
+                                backgroundColor: "#202020"
+                            }}
+                            onChange={(e) => {
+                                navigate(`/trending/${e.target.value}/1`)
+                            }}
+                        >
+                            <option value="movie">Movies</option>
+                            <option value="tv">TV</option>
+                            <option value="person">People</option>
+                        </select>
+                    </div>
                     <div className='grid grid-cols-4 gap-4 max-md:grid-cols-3 max-sm:gap-2 max-sm:grid-cols-2'>
                         {
                             data.results.map(movie => {

@@ -45,6 +45,7 @@ const Pagination = (props) => {
                 min="1"
                 max={totalPages}
                 className='page-number'
+                id='page-number'
                 onKeyDown={(e) => {
                     if (e.key === "Enter") {
                         var value = e.target.value;
