@@ -8,7 +8,7 @@ import Result from './pages/Result';
 import CelebrityInfo from './pages/CelebrityInfo';
 import Tv from './pages/Tv';
 import TvInfo from './pages/TvInfo';
-import Info from './pages/Info';
+import Trending from './pages/Trending';
 import ButtonUp from './components/ButtonUp';
 import PopularPage from './pages/PopularPage';
 import Genre from './pages/Genre';
@@ -20,12 +20,12 @@ function App() {
         <Navigation />
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route exact path="/trending/:trendings/:pagenum" element={<Info />} />
+          <Route exact path="/trending/:trendings/:pagenum" element={<Trending />} />
           <Route exact path='/result/:mvname/:movieon/:tvon/:peopleon/:pagenum' element={<Result />} />
           <Route exact path='/movies/movieinfo/:moviename/:movieid' element={<MovieInfo />} />
           <Route exact path='/discover/:discover/:pagenum' element={<Discover />} />
           <Route exact path='/people/:celebname/:celebid' element={<CelebrityInfo />} />
-          <Route exact path='/discover/tv/:pagenum' element={<Tv />} />
+          {/* <Route exact path='/discover/tv/:pagenum' element={<Tv />} /> */}
           <Route exact path='/tv/tvinfo/:tvname/:tvid' element={<TvInfo />} />
           <Route exact path='/popular/:type/:pagenum' element={<PopularPage />} />
           <Route exact path='/:type/:genre/:genreName/:pagenum' element={<Genre />} />

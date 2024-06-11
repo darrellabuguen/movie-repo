@@ -6,12 +6,11 @@ import Pagination from '../components/Pagination';
 
 const Categories = () => {
     const navigate = useNavigate();
-    var { discover, pagenum } = useParams();
-    var separate = discover.split(" ");
-    var combined = separate.length === 2 ? separate[0].toLowerCase() + "_" + separate[1].toLowerCase() : discover.toLowerCase();
-    const { data, loading, error } = useFetch(`https://api.themoviedb.org/3/movie/${combined}?language=en-US&page=${pagenum}`, "GET", `${pagenum}`);
-    var title = document.querySelector("title");
-    title.innerText = `${discover} | Discover`;
+    let { discover, pagenum } = useParams();
+    let heading = discover === "top_rated" ? "Top Rated" : discover === "upcoming" ? "Upcoming" : "Now Playing";
+    const { data, loading, error } = useFetch(`https://api.themoviedb.org/3/movie/${discover}?language=en-US&page=${pagenum}`, "GET", `${pagenum}`);
+    let title = document.querySelector("title");
+    title.innerText = `${heading} | Discover`;
 
     const setPageNumber = (number) => {
         window.scrollTo(0, 0);
@@ -25,7 +24,7 @@ const Categories = () => {
         <div className='mx-auto max-w-7xl  p-6 lg:px-8 max-sm:px-2'>
             {data && (
                 <>
-                    <h1>{discover}</h1>
+                    <h1>{heading}</h1>
                     <div className='grid grid-cols-4 gap-4 max-md:grid-cols-3 max-sm:gap-2 max-sm:grid-cols-2'>
                         {
                             data.results.map(movie => {

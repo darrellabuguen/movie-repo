@@ -1,21 +1,24 @@
 import { Link } from "react-router-dom"
+import Search from "./Search";
+
+//icons
 import { FaPhotoFilm } from "react-icons/fa6";
 import { Fragment, useState } from 'react'
 import { Dialog, Disclosure, Popover, Transition } from '@headlessui/react'
-import { PiTelevision, PiTrophy, PiFilmReel } from "react-icons/pi";
+import { PiTelevision, PiTrophy, PiFilmReel, PiFireSimple } from "react-icons/pi";
 import { IoTicketOutline } from "react-icons/io5";
 import {
     Bars3Icon,
     XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
-import Search from "./Search";
 
 const products = [
-    { name: 'Top Rated', description: 'List of top rated movies', icon: PiTrophy },
-    { name: 'TV', description: 'Discover what is trend on TV today', icon: PiTelevision },
-    { name: 'Upcoming', description: 'Get movies that will be realeased soon', icon: PiFilmReel },
-    { name: 'Now Playing', description: 'Movies that are curretly in cinemas', icon: IoTicketOutline }
+    { name: 'Top Rated', description: 'List of top rated movies', href: `discover/top_rated/1`, icon: PiTrophy },
+    { name: 'TV', description: 'Discover what is trend on TV today', href: `trending/tv/1`, icon: PiTelevision },
+    { name: 'Upcoming', description: 'Get movies that will be realeased soon', href: `discover/upcoming/1`, icon: PiFilmReel },
+    { name: 'Now Playing', description: 'Movies that are curretly in cinemas', href: `discover/now_playing/1`, icon: IoTicketOutline },
+    { name: 'Trending', description: 'Discover trending movies today', href: `trending/movie/1`, icon: PiFireSimple }
 ]
 const callsToAction = [
     { name: 'Watch demo', href: '#', icon: PlayCircleIcon },
@@ -76,9 +79,8 @@ function Navigation() {
                                                 <item.icon className="h-6 w-6 text-gray-600 group-hover:text-blue-500" aria-hidden="true" />
                                             </div>
                                             <div className="flex-auto">
-                                                <Link to={
-                                                    item.name === "TV" ? `discover/tv/1` : `/discover/${item.name}/1`
-                                                } className="block font-semibold text-gray-900">
+                                                <Link to={item.href}
+                                                    className="block font-semibold text-gray-900">
                                                     {item.name}
                                                     <span className="absolute inset-0" />
                                                 </Link>
@@ -91,9 +93,7 @@ function Navigation() {
                                     {callsToAction.map((item) => (
                                         <Link
                                             key={item.name}
-                                            to={
-                                                item.name === "TV" ? `discover/tv/1` : `/discover/${item.name}/1`
-                                            }
+                                            to={item.href}
                                             className="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"
                                         >
                                             <item.icon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
@@ -156,9 +156,7 @@ function Navigation() {
                                                     <Link
                                                         key={item.name}
                                                         as="a"
-                                                        to={
-                                                            item.name === "TV" ? `discover/tv/1` : `/discover/${item.name}/1`
-                                                        }
+                                                        to={item.href}
                                                         className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                                                         onClick={() => setMobileMenuOpen(false)}
                                                     >
