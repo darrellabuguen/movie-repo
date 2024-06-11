@@ -18,7 +18,7 @@ const products = [
     { name: 'TV', description: 'Discover what is trend on TV today', href: `trending/tv/1`, icon: PiTelevision },
     { name: 'Upcoming', description: 'Get movies that will be realeased soon', href: `discover/upcoming/1`, icon: PiFilmReel },
     { name: 'Now Playing', description: 'Movies that are curretly in cinemas', href: `discover/now_playing/1`, icon: IoTicketOutline },
-    { name: 'Trending', description: 'Discover trending movies today', href: `trending/movie/1`, icon: PiFireSimple }
+    { name: 'Trending', description: 'Discover trendings today', href: `trending/movie/1`, icon: PiFireSimple }
 ]
 const callsToAction = [
     { name: 'Watch demo', href: '#', icon: PlayCircleIcon },
