@@ -11,7 +11,7 @@ import {
     Bars3Icon,
     XMarkIcon,
 } from '@heroicons/react/24/outline'
-import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
+import { ChevronDownIcon } from '@heroicons/react/20/solid'
 
 const products = [
     { name: 'Top Rated', description: 'List of top rated movies', href: `discover/top_rated/1`, icon: PiTrophy },
@@ -19,10 +19,6 @@ const products = [
     { name: 'Upcoming', description: 'Get movies that will be realeased soon', href: `discover/upcoming/1`, icon: PiFilmReel },
     { name: 'Now Playing', description: 'Movies that are curretly in cinemas', href: `discover/now_playing/1`, icon: IoTicketOutline },
     { name: 'Trending', description: 'Discover trendings today', href: `trending/movie/1`, icon: PiFireSimple }
-]
-const callsToAction = [
-    { name: 'Watch demo', href: '#', icon: PlayCircleIcon },
-    { name: 'Contact us', href: '#', icon: PhoneIcon },
 ]
 
 function classNames(...classes) {
@@ -89,18 +85,6 @@ function Navigation() {
                                         </div>
                                     ))}
                                 </div>
-                                <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
-                                    {callsToAction.map((item) => (
-                                        <Link
-                                            key={item.name}
-                                            to={item.href}
-                                            className="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"
-                                        >
-                                            <item.icon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
-                                            {item.name}
-                                        </Link>
-                                    ))}
-                                </div>
                             </Popover.Panel>
                         </Transition>
                     </Popover>
@@ -152,7 +136,7 @@ function Navigation() {
                                                 />
                                             </Disclosure.Button>
                                             <Disclosure.Panel className="mt-2 space-y-2">
-                                                {[...products, ...callsToAction].map((item) => (
+                                                {[...products].map((item) => (
                                                     <Link
                                                         key={item.name}
                                                         as="a"
