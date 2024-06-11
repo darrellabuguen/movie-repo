@@ -20,8 +20,7 @@ const Genre = (props) => {
     //fetch
     const { data, loading, error } = useFetch(`https://api.themoviedb.org/3/discover/${typeProps}?include_adult=false${genreProps}&include_video=true&language=en-US&page=${pagenumProps}&sort_by=popularity.desc`, "GET");
 
-
-    let more = `/genre/${typeProps}/${genreProps}/${genreNameProps}/1`;   //links
+    let more = `/genre/${typeProps}/${props.genre}/${genreNameProps}/1`;   //links
 
     //change the title
     if (type) {
@@ -38,7 +37,7 @@ const Genre = (props) => {
     //handle for changing page number
     const setPageNumber = (number) => {
         window.scrollTo(0, 0);
-        navigate(`/genre/${typeProps}/${genreProps}/${genreNameProps}/${number}`);
+        navigate(`/genre/${typeProps}/${genre}/${genreNameProps}/${number}`);
     }
 
     if (loading) return <div className='mx-auto max-w-7xl p-6 lg:px-8 max-sm:px-2'><Loading /></div>;
