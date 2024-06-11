@@ -88,16 +88,14 @@ const MovieInfo = () => {
                                                 <span>Genre: </span>
                                                 {data.genres.map((genre, index) => {
                                                     return (
-                                                        <>
-                                                            <Link
-                                                                key={genre.id}
-                                                                to={`/movie/${genre.id}/${genre.name}/1`}
-                                                                className='mr-2 hover:text-blue-500 max-sm:underline max-sm:text-blue-500'
-                                                            >
-                                                                {genre.name}
-                                                                {index == data.genres.length - 1 ? "" : ","}
-                                                            </Link>
-                                                        </>
+                                                        <Link
+                                                            key={genre.id}
+                                                            to={`/movie/${genre.id}/${genre.name}/1`}
+                                                            className='mr-2 hover:text-blue-500 max-sm:underline max-sm:text-blue-500'
+                                                        >
+                                                            {genre.name}
+                                                            {index == data.genres.length - 1 ? "" : ","}
+                                                        </Link>
                                                     )
                                                 })}
                                             </div>
