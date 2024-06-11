@@ -54,6 +54,7 @@ const Search = () => {
                             type="text"
                             name="region"
                             className=' outline-blue-500 border rounded-md text-black p-2 w-full'
+                            autoComplete='off'
                         >
                             {jsonData.results.map(data => {
                                 return (
