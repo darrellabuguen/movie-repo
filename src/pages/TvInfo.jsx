@@ -83,7 +83,7 @@ const TvInfo = () => {
                                                 return (
                                                     <Link
                                                         key={genre.id}
-                                                        to={`/tv/${genre.id}/${genre.name}/1`}
+                                                        to={`/genre/tv/${genre.id}/${genre.name}/1`}
                                                         className='mr-2 hover:text-blue-500 max-sm:underline max-sm:text-blue-500'
                                                     >
                                                         {genre.name}

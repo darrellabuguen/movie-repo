@@ -13,20 +13,20 @@ const Genre = (props) => {
 
     //change parameters if params is not set
     let typeProps = !props.type ? type : props.type;
-    let genreProps = !props.genre ? genre : props.genre;
+    let genreProps = genre ? `&with_genres=${genre}` : !props.genre ? "" : `&with_genres=${props.genre}`;
     let pagenumProps = !pagenum ? "1" : pagenum;
     let genreNameProps = !props.name ? genreName : props.name;
-
+    let titlePlaceholder = genre ? `${genreNameProps} | Genres` : "Genres";
     //fetch
-    const { data, loading, error } = useFetch(`https://api.themoviedb.org/3/discover/${typeProps}?include_adult=false&with_genres=${genreProps}&include_video=true&language=en-US&page=${pagenumProps}&sort_by=popularity.desc`, "GET");
+    const { data, loading, error } = useFetch(`https://api.themoviedb.org/3/discover/${typeProps}?include_adult=false${genreProps}&include_video=true&language=en-US&page=${pagenumProps}&sort_by=popularity.desc`, "GET");
 
 
-    let more = `/${typeProps}/${genreProps}/${genreNameProps}/1`;   //links
+    let more = `/genre/${typeProps}/${genreProps}/${genreNameProps}/1`;   //links
 
     //change the title
     if (type) {
         let title = document.querySelector("title");
-        title.innerText = `${genreNameProps} | Genre`;
+        title.innerText = titlePlaceholder;
     }
 
     //show the link explore if heading is hovered
@@ -38,7 +38,7 @@ const Genre = (props) => {
     //handle for changing page number
     const setPageNumber = (number) => {
         window.scrollTo(0, 0);
-        navigate(`/${typeProps}/${genreProps}/${genreNameProps}/${number}`);
+        navigate(`/genre/${typeProps}/${genreProps}/${genreNameProps}/${number}`);
     }
 
     if (loading) return <div className='mx-auto max-w-7xl p-6 lg:px-8 max-sm:px-2'><Loading /></div>;
@@ -123,7 +123,7 @@ const Genre = (props) => {
             }
 
             {/* Load as a page when type param is set*/}
-            {data && type &&
+            {data && type && genre &&
                 <div className='mx-auto max-w-7xl p-6 lg:px-8 max-sm:px-2'>
                     <div
                         className='flex items-center justify-between'
@@ -138,7 +138,7 @@ const Genre = (props) => {
                             className=' border-gray-500 border rounded-md p-2'
                             value={genreNameProps}
                             onChange={(e) => {
-                                navigate(`/${typeProps}/${e.target.value}/${e.target.options[e.target.selectedIndex].text}/1`)
+                                navigate(`/genre/${typeProps}/${e.target.value}/${e.target.options[e.target.selectedIndex].text}/1`)
                             }}
                         >
                             {genres.genres.map((item, index) => {
@@ -202,6 +202,24 @@ const Genre = (props) => {
                         }
                     </div>
                     <Pagination page={pagenum} total={data.total_pages} set={setPageNumber} />
+                </div>
+            }
+
+            {/* genres list */}
+            {data && type && !genre &&
+                <div className='mx-auto max-w-7xl p-6 lg:px-8 max-sm:px-2 grid grid-cols-2 gap-2'>
+                    {genres.genres.map((item, index) => {
+                        return (
+                            <Link
+                                key={index}
+                                to={`/genre/${typeProps}/${item.id}/${item.name}/1`}
+                                className='hover:bg-gray-500 flex items-center justify-between p-2 rounded-md border border-gray-500'
+                            >
+                                <p className='line-clamp-1'>{item.name}</p>
+                                <ChevronRightIcon className='w-5 h-5 max-sm:h-4 max-sm:w-4' />
+                            </Link>
+                        )
+                    })}
                 </div>
             }
         </div>
