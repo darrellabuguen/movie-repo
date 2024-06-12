@@ -31,6 +31,7 @@ const Info = () => {
                             name="trend-type"
                             id="trend-type"
                             className='p-2 border border-gray-500 rounded-md'
+                            value={trendings}
                             style={{
                                 backgroundColor: "#202020"
                             }}
