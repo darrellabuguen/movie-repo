@@ -6,21 +6,48 @@ import Loading from '../components/Loading';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import Pagination from '../components/Pagination';
 import genres from '../genre.json';
+import { FaFilter } from "react-icons/fa";
+import { IoIosSearch } from "react-icons/io";
+import mvimage from "../assets/nopic-movie.jpg";
 
 const Genre = (props) => {
     const navigate = useNavigate();
-    const { type, genre, genreName, pagenum } = useParams();    //parameters
+    const { type, genre, pagenum } = useParams();    //parameters
+    const [checkboxes, setCheckboxes] = useState(() => {
+        const initialCheckboxes = {};
+        genres.genres.map((item) => {
+            initialCheckboxes[item.id] = genre == item.id ? true : false;
+        });
+        return initialCheckboxes;       //this is genre id object
+    });
+
+    //handle for checkboxes
+    const handleChangeCheckbox = (event) => {
+        const { id, checked } = event.target;
+
+        //change state of checkbox
+        setCheckboxes((prevState) => ({
+            ...prevState,
+            [id]: checked,
+        }));
+    }
+
+    //will filter all keys of "checkboxes" that is true/checked
+    const genresChecked = Object.keys(checkboxes).filter((item) => checkboxes[item]);
+
+    const combinedGenre = genresChecked.join(', ');
 
     //change parameters if params is not set
     let typeProps = !props.type ? type : props.type;
     let genreProps = genre ? `&with_genres=${genre}` : !props.genre ? "" : `&with_genres=${props.genre}`;
     let pagenumProps = !pagenum ? "1" : pagenum;
-    let genreNameProps = !props.name ? genreName : props.name;
-    let titlePlaceholder = genre ? `${genreNameProps} | Genres` : "Genres";
+    let genreNameProps = props.name;
+    let titlePlaceholder = genre ? `Filter results | Genres` : "Genres";
+
     //fetch
     const { data, loading, error } = useFetch(`https://api.themoviedb.org/3/discover/${typeProps}?include_adult=false${genreProps}&include_video=true&language=en-US&page=${pagenumProps}&sort_by=popularity.desc`, "GET");
 
-    let more = `/genre/${typeProps}/${props.genre}/${genreNameProps}/1`;   //links
+    let more = `/genre/${typeProps}/${props.genre}/1`;   //links
 
     //change the title
     if (type) {
@@ -37,14 +64,18 @@ const Genre = (props) => {
     //handle for changing page number
     const setPageNumber = (number) => {
         window.scrollTo(0, 0);
-        navigate(`/genre/${typeProps}/${genre}/${genreNameProps}/${number}`);
+        if (data && type && genre) {
+            navigate(`/genre/${typeProps}/${genre}/${number}`);
+        } else {
+            navigate(`/genre/${typeProps}/${number}`);
+        }
     }
 
     if (loading) return <div className='mx-auto max-w-7xl p-6 lg:px-8 max-sm:px-2'><Loading /></div>;
     if (error) return <div>Error: {error}</div>;
 
     return (
-        <div className='my-3'>
+        <>
             {/* Show the heading if type params is not set */}
             {!type && <div
                 className='flex items-center gap-2'
@@ -121,37 +152,59 @@ const Genre = (props) => {
                 </>
             }
 
-            {/* Load as a page when type param is set*/}
-            {data && type && genre &&
+            {/* genres list */}
+            {data && type &&
                 <div className='mx-auto max-w-7xl p-6 lg:px-8 max-sm:px-2'>
-                    <div
-                        className='flex items-center justify-between'
-                    >
-                        <h1>{genreNameProps}</h1>
-                        <select
-                            name="genreJSON"
-                            id="genreJSON"
-                            style={{
-                                backgroundColor: "#202020",
-                            }}
-                            className=' border-gray-500 border rounded-md p-2'
-                            value={genreNameProps}
-                            onChange={(e) => {
-                                navigate(`/genre/${typeProps}/${e.target.value}/${e.target.options[e.target.selectedIndex].text}/1`)
-                            }}
-                        >
+                    <div id='filter-container'>
+                        <div className='flex items-center justify-end'>
+                            <button className='bg-blue-500 flex items-center p-1 gap-2 rounded-sm mb-3'>
+                                <FaFilter className='w-3 h-3' />
+                                Filter
+                            </button>
+                        </div>
+                        <div className='grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-8'>
                             {genres.genres.map((item, index) => {
                                 return (
-                                    <option
-                                        key={index}
-                                        value={item.id}
-                                    >
-                                        {item.name}
-                                    </option>
+                                    // <Link
+                                    //     key={index}
+                                    //     to={`/genre/${typeProps}/${item.id}/${item.name}/1`}
+                                    //     className='hover:bg-gray-500 flex items-center justify-between p-2 rounded-md border border-gray-500'
+                                    // >
+                                    //     <p className='line-clamp-1'>{item.name}</p>
+                                    //     <ChevronRightIcon className='w-5 h-5 max-sm:h-4 max-sm:w-4' />
+                                    // </Link>
+                                    <span key={index} className='flex items-center gap-2 border border-gray-500 p-2 rounded-md line-clamp-1'>
+                                        <input
+                                            type="checkbox"
+                                            name={item.name}
+                                            id={item.id}
+                                            value={item.id}
+                                            className='default:ring-2 checked:bg-red-200 '
+                                            checked={checkboxes[item.id]}
+                                            onChange={handleChangeCheckbox}
+                                        />
+                                        <label htmlFor={item.id}>
+                                            <p className='line-clamp-1'>{item.name}</p>
+                                        </label>
+                                    </span>
                                 )
                             })}
-                        </select>
+                        </div>
+                        <div className='flex items-center justify-start mt-3'>
+                            <button
+                                className='bg-blue-500 flex items-center p-2 gap-1 rounded-full'
+                                onClick={() => {
+                                    if (combinedGenre) {
+                                        navigate(`/genre/${typeProps}/${combinedGenre}/1`)
+                                    }
+                                }}
+                            >
+                                <IoIosSearch className='w-6 h-6' />
+                                Filter
+                            </button>
+                        </div>
                     </div>
+                    <br />
                     <div className='grid grid-cols-4 gap-4 max-md:grid-cols-3 max-sm:gap-2 max-sm:grid-cols-2'>
                         {
                             data.results.map(movie => {
@@ -203,25 +256,7 @@ const Genre = (props) => {
                     <Pagination page={pagenum} total={data.total_pages} set={setPageNumber} />
                 </div>
             }
-
-            {/* genres list */}
-            {data && type && !genre &&
-                <div className='mx-auto max-w-7xl p-6 lg:px-8 max-sm:px-2 grid grid-cols-2 gap-2'>
-                    {genres.genres.map((item, index) => {
-                        return (
-                            <Link
-                                key={index}
-                                to={`/genre/${typeProps}/${item.id}/${item.name}/1`}
-                                className='hover:bg-gray-500 flex items-center justify-between p-2 rounded-md border border-gray-500'
-                            >
-                                <p className='line-clamp-1'>{item.name}</p>
-                                <ChevronRightIcon className='w-5 h-5 max-sm:h-4 max-sm:w-4' />
-                            </Link>
-                        )
-                    })}
-                </div>
-            }
-        </div>
+        </>
     )
 }
 

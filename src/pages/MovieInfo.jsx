@@ -90,7 +90,7 @@ const MovieInfo = () => {
                                                     return (
                                                         <Link
                                                             key={genre.id}
-                                                            to={`/genre/movie/${genre.id}/${genre.name}/1`}
+                                                            to={`/genre/movie/${genre.id}/1`}
                                                             className='mr-2 hover:text-blue-500 max-sm:underline max-sm:text-blue-500'
                                                         >
                                                             {genre.name}
