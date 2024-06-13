@@ -168,7 +168,7 @@ const Genre = (props) => {
                         </button>
                     </div>
                     <div id='filter-container'
-                        className={`transition-all overflow-hidden shadow-md rounded-md z-10 ${filterHeight == "0px" ? "mb-0" : "mb-3"}`}
+                        className={`transition-all overflow-hidden shadow-md rounded-lg z-10 ${filterHeight == "0px" ? "mb-0" : "mb-3"}`}
                         style={{
                             backgroundColor: "#323232",
                             maxHeight: filterHeight
@@ -250,7 +250,7 @@ const Genre = (props) => {
                                         className='container flex flex-col justify-center items-center text-center cursor-pointer'
                                         to={location}
                                     >
-                                        <div className='h-full relative'>
+                                        <div className='h-full relative shadow-md rounded-md shadow-stone-950'>
                                             {type !== "person" && <div className='absolute top-2 right-2 p-1 bg-white rounded-sm text-black font-bold'>{year}</div>}
                                             <img src={img_src} alt='img' className='h-full rounded-lg' />
                                         </div>
