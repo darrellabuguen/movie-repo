@@ -43,7 +43,7 @@ const Genre = (props) => {
     let pagenumProps = !pagenum ? "1" : pagenum;
     let genreNameProps = props.name;
     let titlePlaceholder = genre ? `Filter results | Genres` : "Genres";
-    let [filterHeight, setFilterHeight] = useState("opacity-0 pointer-events-none translate-y-4");
+    let [filterHeight, setFilterHeight] = useState("0px");
     let [hovered, setHover] = useState("opacity-0 w-0");
     let more = `/genre/${typeProps}/${props.genre}/1`;      //links
 
@@ -159,7 +159,8 @@ const Genre = (props) => {
                         <button
                             className='bg-blue-500 flex items-center p-1 gap-2 rounded-sm mb-3'
                             onClick={() => {
-                                filterHeight == "opacity-0 pointer-events-none translate-y-4" ? setFilterHeight("opacity-100 pointer-events-all translate-y-0") : setFilterHeight("opacity-0 pointer-events-none translate-y-4");
+                                let filterContainer = document.getElementById("filter-container");
+                                filterHeight == "0px" ? setFilterHeight(`${filterContainer.scrollHeight}px`) : setFilterHeight("0px");
                             }}
                         >
                             <FaFilter className='w-3 h-3' />
@@ -167,12 +168,13 @@ const Genre = (props) => {
                         </button>
                     </div>
                     <div id='filter-container'
-                        className={`transition shadow-md p-2 rounded-md absolute z-10 ${filterHeight}`}
+                        className={`transition-all overflow-hidden shadow-md rounded-md z-10 ${filterHeight == "0px" ? "mb-0" : "mb-3"}`}
                         style={{
-                            backgroundColor: "#323232"
+                            backgroundColor: "#323232",
+                            maxHeight: filterHeight
                         }}
                     >
-                        <div className='grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-8'>
+                        <div className='p-2 grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-8'>
                             {genres.genres.map((item, index) => {
                                 return (
                                     // <Link
@@ -200,7 +202,7 @@ const Genre = (props) => {
                                 )
                             })}
                         </div>
-                        <div className='flex items-center justify-start mt-3'>
+                        <div className='flex items-center justify-start mt-3 p-2'>
                             <button
                                 className='bg-blue-500 flex items-center p-2 gap-1 rounded-full'
                                 onClick={() => {
