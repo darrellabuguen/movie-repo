@@ -44,11 +44,12 @@ const Genre = (props) => {
         setCheckboxes(() => {
             const initialCheckboxes = {};
             genresTv.genres.map((item) => {
-                initialCheckboxes[item.id] = genre == item.id ? true : false;
+                initialCheckboxes[item.id] = false;
             });
             return initialCheckboxes;       //this is genre id object
         })
         navigate(`/genre/${value}/1`)
+        setFilterHeight("0px");
     }
 
     //handle for checkboxes
