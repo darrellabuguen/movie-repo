@@ -139,11 +139,11 @@ const Genre = (props) => {
                             switch (props.type) {
                                 case 'movie':
                                     img_src = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
-                                    location = `/movies/movieinfo/${movie.title}/${movie.id}`;
+                                    location = `/movies/movieinfo/${encodeURIComponent(movie.title)}/${movie.id}`;
                                     break;
                                 case 'tv':
                                     img_src = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
-                                    location = `/tv/tvinfo/${movie.name}/${movie.id}`;
+                                    location = `/tv/tvinfo/${encodeURIComponent(movie.name)}/${movie.id}`;
                                     break;
                             }
 
@@ -262,22 +262,21 @@ const Genre = (props) => {
                     <div className='grid grid-cols-4 gap-4 max-md:grid-cols-3 max-sm:gap-2 max-sm:grid-cols-2'>
                         {
                             data.results.map(movie => {
-                                var year = "";
-                                var img_src = "";
-                                var img_title = "";
-                                var location = "";
+                                let img_src = "";
+                                let img_title = "";
+                                let location = "";
 
                                 //check type of collected data
                                 switch (type) {
                                     case 'movie':
                                         img_src = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
                                         img_title = movie.title;
-                                        location = `/movies/movieinfo/${movie.title}/${movie.id}`;
+                                        location = `/movies/movieinfo/${encodeURIComponent(movie.title)}/${movie.id}`;
                                         break;
                                     case 'tv':
                                         img_src = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
                                         img_title = movie.name;
-                                        location = `/tv/tvinfo/${movie.name}/${movie.id}`;
+                                        location = `/tv/tvinfo/${encodeURIComponent(movie.name)}/${movie.id}`;
                                         break;
                                 }
 

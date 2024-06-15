@@ -59,26 +59,26 @@ const Result = () => {
                                 {
                                     data.results.map(movie => {
                                         const type = !movie.media_type ? `${checked}` : movie.media_type;
-                                        var img_src = "";
-                                        var img_title = "";
-                                        var location = "";
+                                        let img_src = "";
+                                        let img_title = "";
+                                        let location = "";
 
                                         //check type of collected data
                                         switch (type) {
                                             case 'movie':
                                                 img_src = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
                                                 img_title = movie.title;
-                                                location = `/movies/movieinfo/${movie.title}/${movie.id}`;
+                                                location = `/movies/movieinfo/${encodeURIComponent(movie.title)}/${movie.id}`;
                                                 break;
                                             case 'tv':
                                                 img_src = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
                                                 img_title = movie.name;
-                                                location = `/tv/tvinfo/${movie.name}/${movie.id}`;
+                                                location = `/tv/tvinfo/${encodeURIComponent(movie.name)}/${movie.id}`;
                                                 break;
                                             case 'person':
                                                 img_src = "https://image.tmdb.org/t/p/w500" + movie.profile_path;
                                                 img_title = movie.name;
-                                                location = `/people/${movie.name}/${movie.id}`;
+                                                location = `/people/${encodeURIComponent(movie.name)}/${movie.id}`;
                                                 break;
                                         }
 

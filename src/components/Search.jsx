@@ -98,6 +98,7 @@ const Search = () => {
             <button
                 onClick={() => {
                     const srch_val = document.querySelector('#srch').value;
+                    const encoded_srch_val = encodeURIComponent(srch_val);
                     const movie_option = document.getElementById("movie_check");
                     const tv_option = document.getElementById("tv_check");
                     const people_option = document.getElementById("people_check");
@@ -106,7 +107,7 @@ const Search = () => {
                     var people = people_option.checked ? "people=true" : "people=false";
 
                     if (srch_val !== "") {
-                        navigate(`/result/${srch_val}/${movie}/${tv}/${people}/1`);
+                        navigate(`/result/${encoded_srch_val}/${movie}/${tv}/${people}/1`);
                     }
                 }}
                 className='h-8 bg-white rounded-r-md p-2 hover:bg-zinc-200 text-black flex items-center'

@@ -36,19 +36,19 @@ const PopularPage = () => {
                                     case 'movie':
                                         img_src = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
                                         img_title = movie.title;
-                                        location = `/movies/movieinfo/${movie.title}/${movie.id}`;
+                                        location = `/movies/movieinfo/${encodeURIComponent(movie.title)}/${movie.id}`;
                                         year = movie.release_date.split("-")[0];
                                         break;
                                     case 'tv':
                                         img_src = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
                                         img_title = movie.name;
-                                        location = `/tv/tvinfo/${movie.name}/${movie.id}`;
+                                        location = `/tv/tvinfo/${encodeURIComponent(movie.name)}/${movie.id}`;
                                         year = movie.first_air_date.split("-")[0];
                                         break;
                                     case 'person':
                                         img_src = "https://image.tmdb.org/t/p/w500" + movie.profile_path;
                                         img_title = movie.name;
-                                        location = `/people/${movie.name}/${movie.id}`;
+                                        location = `/people/${encodeURIComponent(movie.name)}/${movie.id}`;
                                         break;
                                 }
 

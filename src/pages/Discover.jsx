@@ -33,7 +33,7 @@ const Categories = () => {
                                     <Link
                                         key={movie.id}
                                         className='container flex flex-col justify-center items-center text-center cursor-pointer'
-                                        to={`/movies/movieinfo/${movie.title}/${movie.id}`}
+                                        to={`/movies/movieinfo/${encodeURIComponent(movie.title)}/${movie.id}`}
                                     >
                                         <div className='h-full relative'>
                                             <div className='absolute top-2 right-2 p-1 bg-white rounded-sm text-black font-bold'>{year}</div>

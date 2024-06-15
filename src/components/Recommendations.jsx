@@ -26,7 +26,7 @@ const Recommendations = (props) => {
                 >
                     {data.results.map(movie => {
                         const type = movie.media_type;
-                        var location = type === "movie" ? `/movies/movieinfo/${movie.title}/${movie.id}` : `/tv/tvinfo/${movie.name}/${movie.id}`;
+                        var location = type === "movie" ? `/movies/movieinfo/${encodeURIComponent(movie.title)}/${movie.id}` : `/tv/tvinfo/${encodeURIComponent(movie.name)}/${movie.id}`;
                         var img_title = type === "movie" ? movie.title : movie.name;
                         var image = movie.poster_path !== null ? `https://image.tmdb.org/t/p/original/${movie.poster_path}` : mvimage;
 

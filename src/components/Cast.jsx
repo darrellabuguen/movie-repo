@@ -25,7 +25,7 @@ const Cast = (props) => {
                     }}
                 >
                     {data.cast.map(person => {
-                        var location = `/people/${person.name}/${person.id}`;
+                        var location = `/people/${encodeURIComponent(person.name)}/${person.id}`;
                         var image = person.profile_path !== null ? `https://image.tmdb.org/t/p/original/${person.profile_path}` : profile;
                         return (
                             <SplideSlide
