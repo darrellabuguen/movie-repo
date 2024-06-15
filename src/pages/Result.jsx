@@ -39,7 +39,7 @@ const Result = () => {
 
     const setPageNumber = (number) => {
         window.scrollTo(0, 0);
-        navigate(`/result/${mvname}/${movieon}/${tvon}/${peopleon}/${number}`);
+        navigate(`/result/${encodeURIComponent(mvname)}/${movieon}/${tvon}/${peopleon}/${number}`);
     }
 
     if (loading) return <div className='mx-auto max-w-7xl p-6 lg:px-8 max-sm:px-2'><Loading /></div>;
