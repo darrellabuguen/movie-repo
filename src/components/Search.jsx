@@ -43,26 +43,6 @@ const Search = () => {
                 }}
             >
                 <div className='w-full'>
-                    <div className='flex gap-1 items-center'>
-                        <input id='safe' type="checkbox" name="safe" />
-                        <label htmlFor="safe" className='text-black'>Safe search</label>
-                    </div>
-                    <div>
-                        <label htmlFor="region" className='text-black font-medium'>Region</label>
-                        <br />
-                        <select id='region'
-                            type="text"
-                            name="region"
-                            className=' outline-blue-500 border rounded-md text-black p-2 w-full'
-                            autoComplete='off'
-                        >
-                            {jsonData.results.map(data => {
-                                return (
-                                    <option key={data.english_name} value={data.iso_3166_1}>{data.english_name}</option>
-                                )
-                            })}
-                        </select>
-                    </div>
                     <h1 className=' text-black font-medium'>Search for</h1>
                     <div className='flex gap-2 items-center px-1'>
                         <span className='flex items-center gap-1'>
@@ -77,21 +57,6 @@ const Search = () => {
                             <input id='people_check' type="checkbox" name="people_check" />
                             <label htmlFor="people_check" className='text-black'>Celebrity</label>
                         </span>
-                    </div>
-                    <div>
-                        <label htmlFor="genre" className='text-black font-medium'>Genre</label>
-                        <br />
-                        <select id='genre'
-                            type="text"
-                            name="genre"
-                            className=' outline-blue-500 border rounded-md text-black p-2 w-full'
-                        >
-                            {jsonData.results.map(data => {
-                                return (
-                                    <option key={data.english_name} value={data.iso_3166_1}>{data.english_name}</option>
-                                )
-                            })}
-                        </select>
                     </div>
                 </div>
             </div>
