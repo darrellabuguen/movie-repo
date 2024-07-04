@@ -1,11 +1,25 @@
 import React, { useState } from 'react'
 import { IoSearchOutline } from "react-icons/io5";
-import jsonData from "../regs.json";
 import { useNavigate } from 'react-router-dom';
 
 const Search = () => {
     const navigate = useNavigate();
     const [options, openOptions] = useState(false);
+
+    const search = () => {
+        const srch_val = document.querySelector('#srch').value;
+        const encoded_srch_val = encodeURIComponent(srch_val);
+        const movie_option = document.getElementById("movie_check");
+        const tv_option = document.getElementById("tv_check");
+        const people_option = document.getElementById("people_check");
+        var movie = movie_option.checked ? "movie=true" : "movie=false";
+        var tv = tv_option.checked ? "tv=true" : "tv=false";
+        var people = people_option.checked ? "people=true" : "people=false";
+
+        if (srch_val !== "") {
+            navigate(`/result/${encoded_srch_val}/${movie}/${tv}/${people}/1`);
+        }
+    }
 
     return (
         <div
@@ -29,6 +43,11 @@ const Search = () => {
                     var srch = document.getElementById("srch");
                     srch.style.outline = 'none';
                     openOptions(false);
+                }}
+                onKeyDown={(e) => {
+                    if (e.key == "Enter") {
+                        search();
+                    }
                 }}
             />
 
@@ -62,18 +81,7 @@ const Search = () => {
             </div>
             <button
                 onClick={() => {
-                    const srch_val = document.querySelector('#srch').value;
-                    const encoded_srch_val = encodeURIComponent(srch_val);
-                    const movie_option = document.getElementById("movie_check");
-                    const tv_option = document.getElementById("tv_check");
-                    const people_option = document.getElementById("people_check");
-                    var movie = movie_option.checked ? "movie=true" : "movie=false";
-                    var tv = tv_option.checked ? "tv=true" : "tv=false";
-                    var people = people_option.checked ? "people=true" : "people=false";
-
-                    if (srch_val !== "") {
-                        navigate(`/result/${encoded_srch_val}/${movie}/${tv}/${people}/1`);
-                    }
+                    search();
                 }}
                 className='h-8 bg-white rounded-r-md p-2 hover:bg-zinc-200 text-black flex items-center'
             ><IoSearchOutline className='w-6' /></button>
