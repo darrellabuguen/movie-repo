@@ -38,7 +38,7 @@ const TvInfo = () => {
 
     if (loading) return <div className='mx-auto max-w-7xl p-6 lg:px-8 max-sm:px-2'>Getting tv info...</div>;
     if (error) return <div>Error: {error}</div>;
-
+    console.log(data);
     return (
         <div className='mx-auto max-w-7xl  p-6 lg:px-8 max-sm:px-2'>
             {data && (
@@ -96,7 +96,9 @@ const TvInfo = () => {
                                         <div>Language: {data.original_language}</div>
                                     </div>
                                     <div>
-                                        <div>Season/s: {data.last_episode_to_air.season_number}</div>
+                                        {data.last_episode_to_air !== null &&
+                                            <div>Season/s: {data.last_episode_to_air.season_number}</div>
+                                        }
                                         <div>Rating: {data.vote_average}</div>
                                         <div>Status: {data.status}</div>
                                     </div>
