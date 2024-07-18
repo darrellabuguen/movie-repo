@@ -26,11 +26,11 @@ const Info = () => {
             {data && (
                 <>
                     <div className='flex items-center justify-between'>
-                        <h1>{trendings === "person" ? "People" : trendings === "tv" ? "TV" : "Movies"}</h1>
+                        <h1>Trending</h1>
                         <select
                             name="trend-type"
                             id="trend-type"
-                            className='p-2 border border-gray-500 rounded-md'
+                            className='p-2 border border-gray-500 rounded-md mb-2'
                             value={trendings}
                             style={{
                                 backgroundColor: "#202020"
