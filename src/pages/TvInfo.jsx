@@ -38,7 +38,7 @@ const TvInfo = () => {
 
     if (loading) return <div className='mx-auto max-w-7xl p-6 lg:px-8 max-sm:px-2'>Getting tv info...</div>;
     if (error) return <div>Error: {error}</div>;
-    console.log(data);
+
     return (
         <div className='mx-auto max-w-7xl  p-6 lg:px-8 max-sm:px-2'>
             {data && (
