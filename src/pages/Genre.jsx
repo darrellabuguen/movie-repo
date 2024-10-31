@@ -159,7 +159,7 @@ const Genre = (props) => {
                                         to={location}
                                         className='container w-full cursor-pointer'
                                     >
-                                        <img src={img_src} alt='img' className='h-full max-md:w-64 rounded-lg' />
+                                        <img src={img_src} alt='img' className='h-full max-md:w-64 rounded-lg' loading='lazy' />
                                     </Link>
                                 </SplideSlide>
                             )
@@ -290,7 +290,7 @@ const Genre = (props) => {
                                         to={location}
                                     >
                                         <div className='h-full relative'>
-                                            <img src={img_src} alt='img' className='h-full rounded-lg' />
+                                            <img src={img_src} alt='img' className='h-full rounded-lg' loading='lazy' />
                                         </div>
                                         <p
                                             className='line-clamp-1'

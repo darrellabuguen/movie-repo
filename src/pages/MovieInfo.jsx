@@ -56,6 +56,7 @@ const MovieInfo = () => {
                                         src={`https://image.tmdb.org/t/p/original${data.poster_path}`}
                                         alt="img"
                                         className='rounded-lg'
+                                        loading='lazy'
                                     />
                                 </div>
                                 <div>

@@ -93,7 +93,7 @@ const Popular = (props) => {
                                         to={location}
                                         className='container w-full cursor-pointer'
                                     >
-                                        <img src={img_src} alt='img' className='h-full max-md:w-64 rounded-lg' />
+                                        <img src={img_src} alt='img' className='h-full max-md:w-64 rounded-lg' loading='lazy' />
                                     </Link>
                                 </SplideSlide>
                             )

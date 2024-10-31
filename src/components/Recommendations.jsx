@@ -36,7 +36,7 @@ const Recommendations = (props) => {
                                 className='cursor-pointer w-40 text-center'
                             >
                                 <Link to={location}>
-                                    <img src={image} alt="img" className='w-full rounded-lg' />
+                                    <img src={image} alt="img" className='w-full rounded-lg' loading='lazy' />
                                     <p
                                         className=' line-clamp-1'
                                         title={img_title}

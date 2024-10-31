@@ -78,7 +78,7 @@ const PopularPage = () => {
                                         to={location}
                                     >
                                         <div className='h-full relative'>
-                                            <img src={img_src} alt='img' className='h-full rounded-lg' />
+                                            <img src={img_src} alt='img' className='h-full rounded-lg' loading='lazy' />
                                         </div>
                                         <p
                                             className='line-clamp-1'

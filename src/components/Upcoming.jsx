@@ -45,7 +45,7 @@ const Upcoming = () => {
                                 className=" relative cursor-pointer"
                             >
                                 <Link to={`/movies/movieinfo/${encodeURIComponent(mv.title)}/${mv.id}`}>
-                                    <img src={"https://image.tmdb.org/t/p/original" + mv.backdrop_path} alt='img' className=' w-full' />
+                                    <img src={"https://image.tmdb.org/t/p/original" + mv.backdrop_path} alt='img' className=' w-full' loading='lazy' />
                                     <div
                                         className='absolute w-full p-4 h-full flex items-end'
                                         style={{

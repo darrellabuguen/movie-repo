@@ -87,7 +87,7 @@ const Info = () => {
                                             {type !== "person" &&
                                                 <div className='absolute top-2 right-2 py-1 px-2 bg-white rounded-sm text-black font-bold'>{year}</div>
                                             }
-                                            <img src={img_src} alt='img' className='h-full rounded-lg' />
+                                            <img src={img_src} alt='img' className='h-full rounded-lg' loading='lazy' />
                                         </div>
                                         <p
                                             className='line-clamp-1'

@@ -44,7 +44,9 @@ const CelebrityInfo = () => {
                             img_condition === `https://image.tmdb.org/t/p/original/${data.profile_path}` ? profile : `https://image.tmdb.org/t/p/original/${data.profile_path}`
                         }
                             alt='img'
-                            className='w-72 rounded-lg mb-3' />
+                            className='w-72 rounded-lg mb-3'
+                            loading='lazy'
+                        />
                         <div>
                             <h1>Biography:</h1>
                             <div className={`desc_con overflow-hidden ${con_height}`}>

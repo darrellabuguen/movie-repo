@@ -33,7 +33,7 @@ const Cast = (props) => {
                                 className='cursor-pointer w-40 text-center max-sm:w-20 max-sm:text-left'
                             >
                                 <Link to={location}>
-                                    <img src={image} alt="img" className='w-full rounded-lg' />
+                                    <img src={image} alt="img" className='w-full rounded-lg' loading='lazy' />
                                     <p
                                         className='line-clamp-1'
                                         title={person.name}
