@@ -77,8 +77,8 @@ const PopularPage = () => {
                                         className='container flex flex-col justify-center items-center text-center cursor-pointer'
                                         to={location}
                                     >
-                                        <div className='h-full relative'>
-                                            <img src={img_src} alt='img' className='h-full rounded-lg' loading='lazy' />
+                                        <div className=' relative'>
+                                            <img src={img_src} alt='img' className=' rounded-lg' loading='lazy' />
                                         </div>
                                         <p
                                             className='line-clamp-1'

@@ -35,9 +35,9 @@ const Categories = () => {
                                         className='container flex flex-col justify-center items-center text-center cursor-pointer'
                                         to={`/movies/movieinfo/${encodeURIComponent(movie.title)}/${movie.id}`}
                                     >
-                                        <div className='h-full relative'>
+                                        <div className=' relative'>
                                             <div className='absolute top-2 right-2 p-1 bg-white rounded-sm text-black font-bold'>{year}</div>
-                                            <img src={"https://image.tmdb.org/t/p/w500/" + movie.poster_path} alt='img' className='h-full rounded-lg' loading='lazy' />
+                                            <img src={"https://image.tmdb.org/t/p/w500/" + movie.poster_path} alt='img' className=' rounded-lg' loading='lazy' />
                                         </div>
                                         <p className=' line-clamp-1' title={movie.title}>{movie.title}</p>
                                     </Link>

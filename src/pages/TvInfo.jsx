@@ -47,7 +47,7 @@ const TvInfo = () => {
                     <div>
                         <img src={
                             img_condition === `https://image.tmdb.org/t/p/original/${data.backdrop_path}` ? mvimage : `https://image.tmdb.org/t/p/original/${data.backdrop_path}`
-                        } alt='img' className='h-full rounded-lg mb-3' loading='lazy' />
+                        } alt='img' className=' rounded-lg mb-3' loading='lazy' />
                         <div className='flex gap-4 max-sm:flex-col'>
                             <div className=' w-40 flex-shrink-0 max-sm:hidden'>
                                 <img

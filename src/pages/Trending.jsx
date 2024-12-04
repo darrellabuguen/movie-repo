@@ -83,11 +83,11 @@ const Info = () => {
                                         className='container flex flex-col justify-center items-center text-center cursor-pointer'
                                         to={location}
                                     >
-                                        <div className='h-full relative'>
+                                        <div className=' relative'>
                                             {type !== "person" &&
                                                 <div className='absolute top-2 right-2 py-1 px-2 bg-white rounded-sm text-black font-bold'>{year}</div>
                                             }
-                                            <img src={img_src} alt='img' className='h-full rounded-lg' loading='lazy' />
+                                            <img src={img_src} alt='img' className=' rounded-lg' loading='lazy' />
                                         </div>
                                         <p
                                             className='line-clamp-1'
