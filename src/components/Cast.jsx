@@ -1,7 +1,6 @@
 import React from 'react'
 import useFetch from './useFetch'
 import { Link } from 'react-router-dom';
-import { Splide, SplideSlide } from '@splidejs/react-splide';
 import profile from "../assets/profile1.jpg";
 
 const Cast = (props) => {
@@ -11,38 +10,45 @@ const Cast = (props) => {
 
     return (
         <>
-            <h1 className='mb-2 text-xl border-l-4 border-blue-500 pl-2 mt-2'>Casts</h1>
             {error && <div>Error fetching data</div>}
             {loading && <div></div>}
             {data && (
-                <Splide
-                    options={{
-                        autoWidth: true,
-                        gap: "1rem",
-                        drag: "free",
-                        pagination: false,
-                        snap: true
-                    }}
+                <div
+                    className='max-h-[400px] overflow-y-auto
+                [&::-webkit-scrollbar]:w-2
+                [&::-webkit-scrollbar-track]:bg-gray-100
+                [&::-webkit-scrollbar-thumb]:bg-gray-400
+                dark:[&::-webkit-scrollbar-track]:bg-neutral-700
+                dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500'
                 >
-                    {data.cast.map(person => {
-                        var location = `/people/${encodeURIComponent(person.name)}/${person.id}`;
-                        var image = person.profile_path !== null ? `https://image.tmdb.org/t/p/original/${person.profile_path}` : profile;
-                        return (
-                            <SplideSlide
-                                key={person.id}
-                                className='cursor-pointer w-40 text-center max-sm:w-20 max-sm:text-left'
-                            >
-                                <Link to={location}>
-                                    <img src={image} alt="img" className='w-full rounded-lg' loading='lazy' />
-                                    <p
-                                        className='line-clamp-1'
-                                        title={person.name}
-                                    >{person.name}</p>
-                                </Link>
-                            </SplideSlide>
-                        )
-                    })}
-                </Splide>
+                    <div className='grid grid-cols-2 gap-4 max-sm:grid-cols-1 '>
+                        {data.cast.map(person => {
+                            var location = `/people/${encodeURIComponent(person.name)}/${person.id}`;
+                            var image = person.profile_path !== null ? `https://image.tmdb.org/t/p/original/${person.profile_path}` : profile;
+                            return (
+                                <div
+                                    key={person.id}
+                                    className='castTag cursor-pointer w-full p-4 rounded-md'
+                                >
+                                    <Link to={location} className='flex align-center gap-4'>
+                                        <img src={image} alt="img" className='w-1/6 rounded-lg' loading='lazy' />
+                                        <div>
+                                            <p
+                                                className='line-clamp-1 font-extrabold'
+                                                title={person.name}
+                                            >
+                                                {person.name}
+                                            </p>
+                                            <p title={person.character}>
+                                                {person.character}
+                                            </p>
+                                        </div>
+                                    </Link>
+                                </div>
+                            )
+                        })}
+                    </div>
+                </div>
             )}
         </>
     )

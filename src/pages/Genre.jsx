@@ -143,7 +143,7 @@ const Genre = (props) => {
                                     break;
                                 case 'tv':
                                     img_src = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
-                                    location = `/tv/tvinfo/${encodeURIComponent(movie.name)}/${movie.id}`;
+                                    location = `/tv/tvinfo/${encodeURIComponent(movie.name)}/${movie.id}/1/1`;
                                     break;
                             }
 
@@ -276,7 +276,7 @@ const Genre = (props) => {
                                     case 'tv':
                                         img_src = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
                                         img_title = movie.name;
-                                        location = `/tv/tvinfo/${encodeURIComponent(movie.name)}/${movie.id}`;
+                                        location = `/tv/tvinfo/${encodeURIComponent(movie.name)}/${movie.id}/1/1`;
                                         break;
                                 }
 

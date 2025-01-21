@@ -25,7 +25,8 @@ function App() {
           <Route exact path='/discover/:discover/:pagenum' element={<Discover />} />
           <Route exact path='/people/:celebname/:celebid' element={<CelebrityInfo />} />
           {/* <Route exact path='/discover/tv/:pagenum' element={<Tv />} /> */}
-          <Route exact path='/tv/tvinfo/:tvname/:tvid' element={<TvInfo />} />
+          {/* <Route exact path='/tv/tvinfo/:tvname/:tvid/' element={<TvInfo />} /> */}
+          <Route exact path='/tv/tvinfo/:tvname/:tvid/:season/:episode' element={<TvInfo />} />
           <Route exact path='/popular/:type/:pagenum' element={<PopularPage />} />
           <Route exact path='/genre/:type/:genre/:pagenum' element={<Genre />} />
           <Route exact path='/genre/:type/:pagenum' element={<Genre />} />
